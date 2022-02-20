@@ -1,0 +1,25 @@
+.course__container{
+/* display: grid;
+grid-template-columns: 55% 45%;
+grid-template-rows: 1fr 1fr;
+height: 100vh;
+width: 100vw; */
+
+display: flex;
+flex-flow: column wrap;
+/* flex-direction: column; */
+flex-direction: row;
+justify-content: center;
+
+
+}
+
+.course__list{
+	/* background-color: #eff2f5; */
+	width: 800px;
+	height: 800px;
+	border-radius: 10px;
+ 	overflow: auto;
+	padding-top: 30px;
+	
+}
