@@ -3,7 +3,7 @@ import { types } from "../types/types"
 
 
 
-// Action Dispatchers
+// Dispatch de las acciones
 export const startLoginEmailPasswordStudent = (email, password) => {
 	const user = 'Grosbin';
 	return (dispatch) => {
@@ -20,7 +20,7 @@ export const startLoginEmailPasswordProfessor = (email, password) => {
 	}
 }
 
-// Action Creators
+// Creacion de las acciones
 export const loginStudent = (user, email) => {
 	return {
 		type: types.loginStudent,

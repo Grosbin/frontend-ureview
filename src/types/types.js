@@ -5,4 +5,9 @@ export const types = {
 	loginStudent: 'Login Students',
 	loginProfessor: 'Login Professor',
 	logout: 'Logout',
+
+
+	// Curso
+	addCourse: 'Add Course',
+
 }

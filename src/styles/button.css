@@ -1,8 +1,16 @@
+
+
+
 .p-button{
 	background-color: var(--blue-600);
 	border: 1px solid var(--blue-600);
 }
-.p-button:hover{
+.p-button:enabled:hover, .p-button:not(button):not(a):not(.p-disabled):hover {
+	background: var(--blue-700);
+	color: #ffffff;
+	border-color: var(--blue-700);
+  }
+/* .p-button:hover{
 	background-color: var(--blue-800);
 	border: 1px solid var(--blue-800);
 }
@@ -29,10 +37,10 @@
 .p-button:disabled:focus{
 	background-color: var(--blue-600);
 	border: 1px solid var(--blue-600);
-}
+} */
 
 .p-button:enabled:hover, .p-button:not(button):not(a):not(.p-disabled):hover {
 	background: var(--blue-700);
 	color: #ffffff;
 	border-color: var(--blue-700);
-}
+} 

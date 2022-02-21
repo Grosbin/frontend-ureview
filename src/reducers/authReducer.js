@@ -1,6 +1,7 @@
 import { types } from "../types/types"
 
 const inialState = {
+	// TODO: cambiar el idUser por el id del usuario de la base de datos
 	isAuthenticated: false,
 	user: null,
 	email: null,

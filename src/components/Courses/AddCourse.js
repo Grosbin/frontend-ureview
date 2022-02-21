@@ -6,14 +6,21 @@ import { classNames } from 'primereact/utils';
 
 import { Calendar } from 'primereact/calendar';
 import { addLocale } from 'primereact/api';
-import { Editor } from 'primereact/editor';
+// import { Editor } from 'primereact/editor';
+import { useDispatch } from 'react-redux';
+import { startAddNewCourse } from '../../actions/course';
+
+import { InputTextarea } from 'primereact/inputtextarea';
 
 // import { useSelector } from 'react-redux';
 
 export const AddCourse = () => {
+
+	const dispatch = useDispatch();
+
 	const [startDateForm, setStartDateForm] = useState(null);
 	const [finishDateForm, setFinishDateForm] = useState(null);
-	const [descriptionForm, setDescriptionForm] = useState('');
+	// const [descriptionForm, setDescriptionForm] = useState('');
 
 	const defaultValues = {
 		name: '',
@@ -29,6 +36,8 @@ export const AddCourse = () => {
 
 	const onSubmit = (data) => {
 		// setShowMessage(true);
+		dispatch(startAddNewCourse(data));
+		// console.log(`Entro a editor: se esperaba ${descriptionForm}, pero se obtuvo ${data.description}`);
 		console.log(startDate + 'Entro a onSubmit');
 		reset();
 	};
@@ -48,13 +57,13 @@ export const AddCourse = () => {
 		clear: 'Claro'
 	});
 
-	const header = (
-		<span className="ql-formats">
-			<button className="ql-bold" aria-label="Bold"></button>
-			<button className="ql-italic" aria-label="Italic"></button>
-			<button className="ql-underline" aria-label="Underline"></button>
-		</span>
-	);
+	// const header = (
+	// 	<span className="ql-formats">
+	// 		<button className="ql-bold" aria-label="Bold"></button>
+	// 		<button className="ql-italic" aria-label="Italic"></button>
+	// 		<button className="ql-underline" aria-label="Underline"></button>
+	// 	</span>
+	// );
 
 
 	return (
@@ -77,7 +86,8 @@ export const AddCourse = () => {
 													id={field.name}
 													{...field}
 													autoFocus
-													className={classNames({ 'p-invalid': fieldState.invalid })} />
+													className={classNames({ 'p-invalid': fieldState.invalid })}
+												/>
 											)} />
 
 										<label htmlFor="name" className={classNames({ 'p-error': errors.name })}>Nombre del Curso*</label>
@@ -139,8 +149,9 @@ export const AddCourse = () => {
 													id={field.finishDate}
 													{...field}
 													autoFocus
-													className={classNames({ 'p-invalid': fieldState.invalid })}
+													className={classNames({ 'p-invalid': fieldState.invalid, 'p-button-info': true })}
 													showIcon={true}
+
 													minDate={new Date()}
 
 
@@ -155,7 +166,39 @@ export const AddCourse = () => {
 									</span>
 									{getFormErrorMessage('finishDate')}
 								</div>
-								<Editor name="description" style={{ height: '320px' }} headerTemplate={header} value={descriptionForm} onTextChange={(e) => setDescriptionForm(e.htmlValue)} />
+								<div className="field">
+									<span className="p-float-label">
+
+										<Controller
+											name="description"
+											control={control}
+											rules={{ required: false }}
+											render={({ field }) => (
+
+												<InputTextarea
+													id={field.description}
+													{...field}
+													rows={5}
+													cols={30}
+													autoResize={true}
+												// value={descriptionForm}
+												// onChange={(e) => setDescriptionForm(e.value)} autoResize
+												/>
+												// <Editor
+												// 	style={{ height: '320px' }}
+												// 	headerTemplate={header}
+												// 	id={field.description}
+												// 	{...field}
+												// />
+
+											)} />
+										<label
+											htmlFor="description"
+										// className={classNames({ 'p-error': errors.finishDate })}
+										>Descripción</label>
+
+									</span>
+								</div>
 
 								<Button type="submit" label="Guardar" className="mt-2 mb-4 p-button-info" />
 
