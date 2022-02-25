@@ -8,7 +8,7 @@
 
 .header-normal .p-menubar{
   transition: background-color 0.5s ease;
-  background-color: rgb(255, 255, 255);
+  background-color: white;
 
 }
 
@@ -17,13 +17,13 @@
 }
 .header-student .p-menubar{
   transition: background-color 0.3s ease;
-  background-color: var(--yellow-500);
+  background-color: var(--yellow-400);
   /* color: white; */
 }
 
 .header-professor .p-menubar{
   transition: background-color 0.3s ease;
-  background-color: var(--blue-700);
+  background-color: var(--blue-500);
   /* color: white; */
   
 }
@@ -39,6 +39,10 @@
 
 .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-menuitem-text:hover{
   color: var(--blue-800);
+}
+
+.p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-submenu-icon{
+  color: white;
 }
 
 @media screen and (max-width: 960px) {

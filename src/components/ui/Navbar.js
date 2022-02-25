@@ -110,9 +110,9 @@ export const Navbar = () => {
 	}
 
 
-	const start = <img alt="logo" src="logo512.png" onError={(e) => e.target.src = 'logo512.png'} height="40" className="mr-2"></img>;
+	const start = <img alt="logo" src="logo.png" onError={(e) => e.target.src = 'logo512.svg'} height="50" className="mr-2"></img>;
 	const access = <SplitButton className='p-button-info' label="Acceso" icon="" onClick={handleLogin} model={itemsAccess}></SplitButton>
-	const user = <SplitButton icon="pi pi-user" className="p-button-info" model={itemsUser} />
+	const user = <SplitButton icon="pi pi-user" className={`${isStudent ? 'p-button-info' : 'p-button-warning'}`} model={itemsUser} />
 	return (
 		<div className={`header ${isAuthenticated ? (isStudent ? 'header-student' : 'header-professor') : 'header-normal'}`}>
 			<Menubar model={isAuthenticated ? (isStudent ? items.concat(itemsStudent) : items.concat(itemsProfessor)) : items} start={start} end={isAuthenticated ? user : access} />

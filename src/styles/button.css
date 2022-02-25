@@ -7,7 +7,7 @@
 }
 .p-button:enabled:hover, .p-button:not(button):not(a):not(.p-disabled):hover {
 	background: var(--blue-700);
-	color: #ffffff;
+	color: white;
 	border-color: var(--blue-700);
   }
 /* .p-button:hover{
@@ -41,6 +41,38 @@
 
 .p-button:enabled:hover, .p-button:not(button):not(a):not(.p-disabled):hover {
 	background: var(--blue-700);
-	color: #ffffff;
+	color: white;
 	border-color: var(--blue-700);
 } 
+
+.p-button.p-button-warning, .p-buttonset.p-button-warning > .p-button, .p-splitbutton.p-button-warning > .p-button, .p-fileupload-choose.p-button-warning > .p-button, .p-button-warning > .p-button {
+	background-color: #ffcc00;
+	color: white;
+	border: 1px solid var(--yellow-500);
+}
+
+.p-button.p-button-warning:enabled:hover, .p-button.p-button-warning:not(button):not(a):not(.p-disabled):hover, .p-buttonset.p-button-warning > .p-button:enabled:hover, .p-buttonset.p-button-warning > .p-button:not(button):not(a):not(.p-disabled):hover, .p-splitbutton.p-button-warning > .p-button:enabled:hover, .p-splitbutton.p-button-warning > .p-button:not(button):not(a):not(.p-disabled):hover, .p-fileupload-choose.p-button-warning:enabled:hover, .p-fileupload-choose.p-button-warning:not(button):not(a):not(.p-disabled):hover {
+	background-color: var(--yellow-500);
+}
+
+.button__tutorial{
+	position: absolute;
+	width: calc(40% - 10px);	
+	left: calc(15% - 100px);
+	/* left: calc(20% - 150px); */
+	top: calc(100% - 98px);
+	/* top: calc(100% - 68px); */
+	/* grid-area: botonTutorial; */
+	
+}
+
+@media (max-width: 768px) {
+	.button__tutorial{
+		position: absolute;
+		/* width: calc(100% - 10px);	 */
+		left: calc(28% - 100px);
+		top: calc(100% - 5px);
+		/* grid-area: botonTutorial; */
+	}
+}
+	

@@ -38,3 +38,15 @@ body {
 /* .p-menubar{
   background-color: var(--yellow-500);
 } */
+
+.container__start{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-area: 
+  "logoUreview logoUreview" 
+  "botonTutorial botonTutorial" 
+  "start start" 
+  "start start";
+}
+
