@@ -7,15 +7,29 @@ import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
 import { Start } from "../components/pages/Start";
 import { About } from "../components/pages/About";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RegisterScreen } from "../components/auth/RegisterScreen";
 import { LoginScreen } from "../components/auth/LoginScreen";
 import { ProfessorRoute } from "./ProfessorRoute";
+import { useEffect } from "react";
+import { startChecking } from "../actions/auth";
+import { startLoadingCourse } from "../actions/course";
+
 
 
 export const AppRouter = () => {
 
-	const { isAuthenticated } = useSelector(state => state.auth);
+	const { isAuthenticated, uid } = useSelector(state => state.auth);
+	const { course } = useSelector(state => state.course);
+
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(startChecking())
+		console.log('Estoy en AppRouter');
+		// dispatch(startLoadingCourse(course));
+	}, [dispatch, course])
+
 
 	return (
 		<BrowserRouter>

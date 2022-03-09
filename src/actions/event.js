@@ -1,12 +1,12 @@
 import { fetchConToken } from "../helpers/fetch";
 import { types } from "../types/types";
 
-export const startAddNewCourse = (course) => {
+export const startAddNewEvent = (event) => {
 	return (dispatch, getState) => {
 		// TODO: Cambiar el name por el id del usuario
 		// const { idUser } = getState().auth;
 		const id = new Date().getTime();
-		console.log(`course id ${id}`);
+		console.log(`Event id ${id}`);
 		// const newCourse = {
 		// 	id: new Date().getTime(),
 		// 	nameCourse: '',
@@ -15,32 +15,33 @@ export const startAddNewCourse = (course) => {
 		// 	description: '',
 		// }
 
-		dispatch(addNewCourse(id, course));
+		dispatch(addNewEvent(id, event));
 		// dispatch(activeCourse(id, course));
 	}
 }
 
-export const startEditCourse = (id, course) => {
+export const startEditEvent = (id, event) => {
 	return (dispatch, getState) => {
-		dispatch(editCourse(id, course));
+		dispatch(editEvent(id, event));
 	}
 }
 
-export const startDeleteCourse = (id) => {
+export const startDeleteEvent = (id) => {
 	return async (dispatch) => {
 		// const { idUser } = getState().auth;
 		// const id = new Date().getTime();
-		dispatch(deleteCourse(id));
+		dispatch(deleteEvent(id));
 	}
 }
 
-export const startGetCourse = () => {
+export const startGetEvent = () => {
 	return async (dispatch) => {
+		//TODO: Cambiarlo por los eventos
 		const resp = await fetchConToken('curso');
 		const body = await resp.json();
 
 		if (body.ok) {
-			dispatch(getCourse(body.courses));
+			dispatch(getEvent(body.courses));
 		} else {
 			console.log(body.msg);
 		}
@@ -51,62 +52,62 @@ export const startGetCourse = () => {
 
 // Creación de las acciones
 
-export const addNewCourse = (id, course) => {
+export const addNewEvent = (id, event) => {
 	return {
-		type: types.addCourse,
+		type: types.addEvent,
 		payload: {
 			id,
-			...course
+			...event
 		}
 	}
 }
 
 // Eliminar un curso
-export const deleteCourse = (id) => {
+export const deleteEvent = (id) => {
 	return {
-		type: types.deleteCourse,
+		type: types.deleteEvent,
 		payload: id
 	}
 }
 
-export const editCourse = (id, course) => ({
-	type: types.editCourse,
+export const editEvent = (id, event) => ({
+	type: types.editEvent,
 	payload: {
 		id,
 		course: {
 			id,
-			...course
+			...event
 		}
 	}
 })
 
 //Curso Activo
-export const activeCourse = (id, course) => {
+export const activeEvent = (id, event) => {
 	return {
-		type: types.activeCourse,
+		type: types.activeEvent,
 		payload: {
 			id,
-			...course
+			...event
 		}
 	}
 }
 
-export const getCourse = (course) => {
+export const getEvent = (event) => {
 	return {
 		type: types.getCourse,
-		payload: course
+		payload: event
 	}
 }
 
 //Campo agregado
-export const startLoadingCourse = (course) => {
+export const startLoadingEvent = (event) => {
 	return async (dispatch) => {
 		// const course = await loadCourse(uid);
-		dispatch(setCourse(course));
+		dispatch(setEvent(event));
 	}
 }
 
-export const setCourse = (course) => ({
-	type: types.loadCourse,
-	payload: course
+export const setEvent = (event) => ({
+	type: types.loadEvent,
+	payload: event
 });

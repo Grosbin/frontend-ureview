@@ -8,12 +8,18 @@ import { Dialog } from 'primereact/dialog';
 import { Divider } from 'primereact/divider';
 import { classNames } from 'primereact/utils';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { startRegisterProfessor, startRegisterStudent } from '../../actions/auth';
 
 export const RegisterScreen = () => {
+
+	const dispatch = useDispatch();
+
 	const [showMessage, setShowMessage] = useState(false);
 	const { isStudent } = useSelector(state => state.auth);
 	const [formData, setFormData] = useState({});
+	const [validPassword, setValidPassword] = useState(true);
+
 	const defaultValues = {
 		name: '',
 		email: '',
@@ -25,9 +31,21 @@ export const RegisterScreen = () => {
 	const { control, formState: { errors }, handleSubmit, reset } = useForm({ defaultValues });
 
 	const onSubmit = (data) => {
-		setFormData(data);
-		setShowMessage(true);
 
+		if (data.password !== data.password2) {
+			setValidPassword(false);
+		} else if (isStudent) {
+			console.log('Dispact de estudiante');
+			dispatch(startRegisterStudent(data.name, data.email, data.password));
+
+		} else {
+			console.log('Dispatch de profesor')
+			dispatch(startRegisterProfessor(data.name, data.email, data.password));
+		}
+
+		setShowMessage(true);
+		setFormData(data);
+		setValidPassword(true);
 		reset();
 	};
 
@@ -36,6 +54,7 @@ export const RegisterScreen = () => {
 	};
 
 	const dialogFooter = <div className="flex justify-content-center"><Button label="OK" className="p-button-text" autoFocus onClick={() => setShowMessage(false)} /></div>;
+
 	const passwordHeader = <h6>Nivel de seguridad</h6>;
 	const passwordFooter = (
 		<React.Fragment>
@@ -66,6 +85,7 @@ export const RegisterScreen = () => {
 							</div>
 						</Dialog>
 
+
 						<div className="flex justify-content-center">
 							<div className="card mb-3">
 								<h5 className="text-center">{`${isStudent ? 'Registro Estudiante' : 'Registro Docente'}`}</h5>
@@ -93,7 +113,7 @@ export const RegisterScreen = () => {
 												render={({ field, fieldState }) => (
 													<InputText id={field.name} {...field} className={classNames({ 'p-invalid': fieldState.invalid })} />
 												)} />
-											<label htmlFor="email" className={classNames({ 'p-error': !!errors.email })}>Correo Institucional*</label>
+											<label htmlFor="email" className={classNames({ 'p-error': errors.email })}>Correo Institucional*</label>
 										</span>
 										{getFormErrorMessage('email')}
 									</div>
@@ -114,7 +134,7 @@ export const RegisterScreen = () => {
 											)} />
 											<label htmlFor="password2" className={classNames({ 'p-error': errors.password })}>Confirme la contraseña*</label>
 										</span>
-										{getFormErrorMessage('password')}
+										{getFormErrorMessage('password2') || (!validPassword && <small className="p-error">Las contraseñas no coinciden </small>)}
 									</div>
 									<Button type="submit" label="Guardar" className="mt-2 mb-4 p-button-info" />
 									<Link to="/sesion" className="link">Iniciar Sesión</Link>

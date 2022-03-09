@@ -14,11 +14,43 @@ const initialState = {
 
 export const courseReducer = (state = initialState, action) => {
 	switch (action.type) {
+		case types.activeCourse:
+			return {
+				...state,
+				active: {
+					...action.payload
+				}
+			}
 		case types.addCourse:
 			return {
 				...state,
 				course: [action.payload, ...state.course]
 			}
+		case types.editCourse:
+			return {
+				...state,
+				course: state.course.map(course => course.id === action.payload.id ? action.payload.course : course)
+			}
+		case types.deleteCourse:
+			return {
+				...state,
+				course: state.course.filter(course => course.id !== action.payload),
+				active: null
+			}
+
+		case types.getCourse:
+			return {
+				...state,
+				course: action.payload
+			}
+		case types.loadCourse:
+			return {
+				...state,
+				course: [...action.payload]
+
+			}
+		//Campo agragado
+
 		default:
 			return state;
 	}

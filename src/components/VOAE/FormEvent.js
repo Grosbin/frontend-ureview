@@ -7,28 +7,29 @@ import { classNames } from 'primereact/utils';
 import { Calendar } from 'primereact/calendar';
 import { addLocale } from 'primereact/api';
 // import { Editor } from 'primereact/editor';
-import { useDispatch, useSelector } from 'react-redux';
-import { startAddNewCourse } from '../../actions/course';
+import { useDispatch } from 'react-redux';
+import { startAddNewCourse, startEditCourse } from '../../actions/course';
 
 import { InputTextarea } from 'primereact/inputtextarea';
+import { startAddNewEvent, startEditEvent } from '../../actions/event';
 
 
 // import { useSelector } from 'react-redux';
 
-export const AddCourse = () => {
+export const FormEvent = ({ defaultValues, type, setDisplayMaximizable }) => {
 
 
-	const { course } = useSelector(state => state.course);
+	// const { course } = useSelector(state => state.course);
 
 
 	const dispatch = useDispatch();
 
-	const defaultValues = {
-		name: '',
-		startDate: '',
-		finishDate: '',
-		description: ''
-	}
+	// const defaultValues = {
+	// 	name: '',
+	// 	startDate: '',
+	// 	finishDate: '',
+	// 	description: ''
+	// }
 
 	const { control, formState: { errors }, handleSubmit, reset } = useForm({ defaultValues });
 
@@ -42,8 +43,16 @@ export const AddCourse = () => {
 
 	const onSubmit = (data) => {
 
-		dispatch(startAddNewCourse(data));
-		console.log(course)
+		if (type === 'addEvent') {
+			dispatch(startAddNewEvent(data));
+			setDisplayMaximizable(false);
+		}
+		if (type === 'editEvent') {
+			console.log(data.name, data.startDate)
+			dispatch(startEditEvent(data.id, data));
+			console.log('Curso Editado ' + data.name);
+			setDisplayMaximizable(false);
+		}
 
 		reset();
 	};
@@ -69,7 +78,10 @@ export const AddCourse = () => {
 		<>
 
 			<div className="card mb-3">
-				<h5 className="text-center">Agregar Curso</h5>
+				<h5 className="text-center">
+					{type === 'addEvent' && 'Agregar Evento'}
+					{type === 'editEvent' && `Editar Evento: ${defaultValues.name}`}
+				</h5>
 				<form onSubmit={handleSubmit(onSubmit)} className="p-fluid">
 					<div className="field">
 						<span className="p-float-label">
@@ -192,7 +204,13 @@ export const AddCourse = () => {
 						</span>
 					</div>
 
-					<Button type="submit" label="Guardar" className="mt-2 mb-4 p-button-info" />
+					<Button type="submit" label="Guardar"
+						className={`mt-2 mb-4 
+						${type === 'addEvent' && 'p-button-info'}
+						${type === 'editEvent' && 'p-button-warning'}`
+						}
+
+					/>
 
 				</form>
 			</div>

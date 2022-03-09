@@ -1,7 +1,13 @@
-@import 'base.css';
-@import 'card.css';
-@import 'course.css';
-@import 'form.css';
-@import 'navbar.css';
-@import 'button.css';
-@import 'images.css';
+@import './base/base.css';
+@import './base/card.css';
+@import './base/course.css';
+@import './base/form.css';
+@import './base/navbar.css';
+@import './base/button.css';
+@import './base/images.css';
+@import './base/table.css';
+@import './base/modal.css';
+@import './base/icon.css';
+
+
+

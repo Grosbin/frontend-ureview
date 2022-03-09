@@ -1,0 +1,33 @@
+
+/* DialogDemo.css */
+
+.dialog-demo .p-button {
+    margin: 0 .5rem 0 0;
+    min-width: 10rem;
+}
+
+.p-dialog .p-dialog-content{
+    padding: 0px 24px;
+    border-radius: 6px;
+}
+
+.p-dialog .p-dialog-header{
+    padding: 0;
+}
+
+.dialog-demo .p-dialog .p-button {
+    min-width: 6rem;
+}
+
+.p-dialog .p-dialog-header {
+    border-bottom: 0 none;
+    background: var(--blue-500);
+    color: #ffffff;
+    /* padding: 1.5rem; */
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+
+.p-dialog .p-dialog-header .p-dialog-header-icon{
+	color: white;
+}

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
@@ -12,7 +12,11 @@ import { startLoginEmailPasswordProfessor, startLoginEmailPasswordStudent, } fro
 
 export const LoginScreen = () => {
 
+	const navigate = useNavigate();
+	const lastPath = localStorage.getItem('lastPath') || '/';
+
 	const dispatch = useDispatch();
+
 	const { isStudent } = useSelector(state => state.auth);
 
 	// let valueEmail = '';
@@ -40,7 +44,9 @@ export const LoginScreen = () => {
 		} else {
 			dispatch(startLoginEmailPasswordProfessor(data.email, data.password));
 		}
+		navigate(lastPath, { replace: true });
 		reset();
+		console.log('Entro a submit' + lastPath);
 	};
 
 	const getFormErrorMessage = (name) => {

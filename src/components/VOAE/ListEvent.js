@@ -2,42 +2,43 @@ import React from 'react'
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteCourse, startEditCourse } from '../../actions/course';
+import { deleteEvent } from '../../actions/event';
+// import { deleteCourse, startEditCourse } from '../../actions/course';
 
 
-export const ListCourse = ({ setDisplayMaximizable, setEditCourse, setAddCourse, setDataCourse, displayMaximizable }) => {
+export const ListEvent = ({ setDisplayMaximizable, setEditEvent, setAddEvent, setDataEvent, displayMaximizable }) => {
 
 	const dispatch = useDispatch();
 
-	const { course } = useSelector(state => state.course);
+	const { events } = useSelector(state => state.events);
 	const { isStudent } = useSelector(state => state.auth);
 
-	// console.log(course);
+	// console.log(event);
 
-	const header = course.name;
+	const header = events.name;
 
 
 
 	const handleDetete = (id) => {
 		console.log('Entro al delete ' + id);
-		dispatch(deleteCourse(id));
+		dispatch(deleteEvent(id));
 
 	}
 
 	const handleUpdate = (id) => {
 		console.log('Entro al update ' + id);
 
-		const courseActive = course.find(course => course.id === id);
+		const eventActive = events.find(event => event.id === id);
 
-		setDataCourse(courseActive);
-		setEditCourse(true);
+		setDataEvent(eventActive);
+		setEditEvent(true);
 		setDisplayMaximizable(true);
-		setAddCourse(false);
+		setAddEvent(false);
 	}
 
-	const registerCourse = <span><Button label="Inscribirse" icon="pi pi-user-plus" className="p-button-sm p-button-primary" style={{ marginLeft: '.2rem' }} /></span>
+	const registerEvent = <span><Button label="Inscribirse" icon="pi pi-user-plus" className="p-button-sm p-button-primary" style={{ marginLeft: '.2rem' }} /></span>
 
-	const editCourseButton = (id, displayMaximizable) => <span>
+	const editEventButton = (id, displayMaximizable) => <span>
 		<Button
 			label="Editar"
 			icon="pi pi-undo"
@@ -60,7 +61,7 @@ export const ListCourse = ({ setDisplayMaximizable, setEditCourse, setAddCourse,
 
 	const footer = (id, displayMaximizable) => <>
 		{
-			isStudent ? registerCourse : editCourseButton(id, displayMaximizable)
+			isStudent ? registerEvent : editEventButton(id, displayMaximizable)
 		}
 
 	</>
@@ -73,7 +74,7 @@ export const ListCourse = ({ setDisplayMaximizable, setEditCourse, setAddCourse,
 
 			{
 				//TODO: cambiar el h4 por un parrafo
-				course.map(index => (
+				events.map(index => (
 					<div key={index.id} className='card__container'>
 						<Card footer={footer(index.id, displayMaximizable)} header={header} className='justify-content-center align-content-center' >
 							<h4>{index.name}</h4>

@@ -3,9 +3,7 @@ import { types } from "../types/types"
 const inialState = {
 	// TODO: cambiar el idUser por el id del usuario de la base de datos
 	isAuthenticated: false,
-	user: null,
-	email: null,
-	isStudent: false,
+	isStudent: null,
 }
 
 export const authReducer = (state = inialState, action) => {
@@ -23,24 +21,31 @@ export const authReducer = (state = inialState, action) => {
 		case types.loginStudent:
 			return {
 				...state,
-				user: action.payload.user,
-				email: action.payload.email,
+				...action.payload,
 				isAuthenticated: true,
 				isStudent: true
 			}
 		case types.loginProfessor:
 			return {
 				...state,
-				user: action.payload.user,
-				email: action.payload.email,
+				...action.payload,
 				isAuthenticated: true,
 				isStudent: false
 			}
 		case types.logout:
 			return {
 				...state,
-				user: null,
-				email: null,
+				isAuthenticated: false,
+				isStudent: null,
+			}
+		case types.loginError:
+			return {
+				...state,
+				...action.payload,
+			}
+		case types.authCheckingFinish:
+			return {
+				...state,
 				isAuthenticated: false
 			}
 		default:

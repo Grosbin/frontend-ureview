@@ -15,36 +15,41 @@ import { InputTextarea } from 'primereact/inputtextarea';
 
 // import { useSelector } from 'react-redux';
 
-export const AddCourse = () => {
+export const EditCourse = ({ dataCourse }) => {
 
 
 	const { course } = useSelector(state => state.course);
 
 
 	const dispatch = useDispatch();
+	// const { course } = useSelector(state => state.course);
 
 	const defaultValues = {
-		name: '',
-		startDate: '',
-		finishDate: '',
-		description: ''
+		name: dataCourse.name,
+		startDate: dataCourse.startDate,
+		finishDate: dataCourse.finishDate,
+		description: dataCourse.description,
 	}
-
+	console.log('Estoy en Edit y estos son los datos: ' + dataCourse.startDate);
+	// const [descriptionForm, setDescriptionForm] = useState('');
 	const { control, formState: { errors }, handleSubmit, reset } = useForm({ defaultValues });
-
+	// const { name, startDate, finishDate, description } = getValues();
 
 	const [startDateForm, setStartDateForm] = useState(null);
 	const [finishDateForm, setFinishDateForm] = useState(null);
+	// setStartDateForm(dataCourse.startDate);
+	// setFinishDateForm(dataCourse.finishDate);
 
 
 
 
 
 	const onSubmit = (data) => {
-
+		// setShowMessage(true);
 		dispatch(startAddNewCourse(data));
 		console.log(course)
-
+		// console.log(`Entro a editor: se esperaba ${descriptionForm}, pero se obtuvo ${data.description}`);
+		// console.log(startDate + 'Entro a onSubmit');
 		reset();
 	};
 
@@ -63,24 +68,35 @@ export const AddCourse = () => {
 		clear: 'Claro'
 	});
 
+	// const header = (
+	// 	<span className="ql-formats">
+	// 		<button className="ql-bold" aria-label="Bold"></button>
+	// 		<button className="ql-italic" aria-label="Italic"></button>
+	// 		<button className="ql-underline" aria-label="Underline"></button>
+	// 	</span>
+	// );
 
 
 	return (
 		<>
-
+			{/* <div className='form__main'>
+				<div className='form__box-container -mb-8'>
+			<div className="form-demo">
+			<div className="flex justify-content-center">
+			*/}
 			<div className="card mb-3">
-				<h5 className="text-center">Agregar Curso</h5>
+				<h5 className="text-center">Editar Curso: {dataCourse.name}</h5>
 				<form onSubmit={handleSubmit(onSubmit)} className="p-fluid">
-					<div className="field">
+					<div className="field ">
 						<span className="p-float-label">
 
 							<Controller
 								name="name"
-
 								control={control}
 								rules={{ required: 'El nombre es requerido.' }}
 								render={({ field, fieldState }) => (
 									<InputText
+
 										id={field.name}
 										{...field}
 										autoFocus
@@ -99,7 +115,6 @@ export const AddCourse = () => {
 
 							<Controller
 								name="startDate"
-
 								control={control}
 								rules={{ required: 'La fecha de inicio es requerida.' }}
 								render={({ field, fieldState }) => (
@@ -134,8 +149,8 @@ export const AddCourse = () => {
 
 							<Controller
 								name="finishDate"
-
 								control={control}
+								value={finishDateForm}
 								rules={{ required: 'La fecha de finalización es requerida.' }}
 								render={({ field, fieldState }) => (
 
@@ -144,7 +159,6 @@ export const AddCourse = () => {
 										showTime
 										hourFormat="12"
 										locale='es'
-										value={finishDateForm}
 										onChange={(e) => setFinishDateForm(e.value)}
 										id={field.finishDate}
 										{...field}
@@ -182,17 +196,26 @@ export const AddCourse = () => {
 										rows={5}
 										cols={30}
 										autoResize={true}
+									// value={descriptionForm}
+									// onChange={(e) => setDescriptionForm(e.value)} autoResize
 									/>
+									// <Editor
+									// 	style={{ height: '320px' }}
+									// 	headerTemplate={header}
+									// 	id={field.description}
+									// 	{...field}
+									// />
+
 								)} />
 							<label
 								htmlFor="description"
-
+							// className={classNames({ 'p-error': errors.finishDate })}
 							>Descripción</label>
 
 						</span>
 					</div>
 
-					<Button type="submit" label="Guardar" className="mt-2 mb-4 p-button-info" />
+					<Button type="submit" label="Guardar" className="mt-2 mb-4 p-button-warning" />
 
 				</form>
 			</div>
@@ -204,4 +227,3 @@ export const AddCourse = () => {
 		</>
 	);
 }
-
