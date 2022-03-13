@@ -1,5 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+:root {
+  /*========== Colores  ==========*/
+  --student-color: #ffbd08;
+  
+
+}
+
+
+
+
 * {
   font-family: "Poppins", sans-serif;
 }
@@ -8,10 +18,21 @@ body {
   background-color: #eff3f8;
 }
 
+.is__student{
+  transition: background-color 0.5s ease-in-out;
+  background-color: var(--yellow-400);
+}
+
+.is__professor{
+  transition: background-color 0.5s ease-in-out;
+  background-color: var(--blue-600);
+}
+
 .link {
   text-decoration: none;
   color: var(--blue-800);
 }
+
 .link:hover {
   color: var(--blue-600);
 }
@@ -21,8 +42,8 @@ body {
   margin: 0;
   /* justify-content: center; */
   /* width: 1200px; */
-  /* width: 100vw;
-  height: 100vh; */
+  width: 100vw;
+  height: 100vh;
 }
 .container {
   /* display: flex;
@@ -49,5 +70,12 @@ body {
   "botonTutorial botonTutorial" 
   "start start" 
   "start start";
+}
+
+/* TODO: Pagina de Acerca de*/
+.surface-0 {
+  background-color: var(--surface-0) !important;
+  border-radius: .5rem;
+padding-top: 20px;
 }
 

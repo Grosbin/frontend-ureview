@@ -3,3 +3,8 @@
 	max-width: 100%;
 	grid-area: logoUreview;
 }
+
+.profile__about{
+	width: 90px;
+	border-radius: 50px;
+}

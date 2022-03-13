@@ -12,12 +12,18 @@ import { startAddNewCourse, startEditCourse } from '../../actions/course';
 
 import { InputTextarea } from 'primereact/inputtextarea';
 
+import { motion } from "framer-motion";
+import { variantsButton } from '../../helpers/framerValues';
 
 // import { useSelector } from 'react-redux';
 
-export const FormCourse = ({ defaultValues, type, setDisplayMaximizable }) => {
+export const FormCourse = ({
+	defaultValues,
+	type,
+	setDisplayMaximizable
+}) => {
 
-
+	const MotionButton = motion(Button);
 	// const { course } = useSelector(state => state.course);
 
 
@@ -203,7 +209,13 @@ export const FormCourse = ({ defaultValues, type, setDisplayMaximizable }) => {
 						</span>
 					</div>
 
-					<Button type="submit" label="Guardar"
+					<MotionButton
+						whileHover="hover"
+						whileTap="tap"
+						variants={variantsButton}
+
+						type="submit"
+						label="Guardar"
 						className={`mt-2 mb-4 
 						${type === 'addCourse' && 'p-button-info'}
 						${type === 'editCourse' && 'p-button-warning'}`

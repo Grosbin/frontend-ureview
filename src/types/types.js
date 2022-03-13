@@ -8,6 +8,7 @@ export const types = {
 	registerProfessor: 'Register Professor',
 	logout: 'Logout',
 	authCheckingFinish: 'Auth Checking Finish',
+	message: 'Message',
 
 
 	// Curso

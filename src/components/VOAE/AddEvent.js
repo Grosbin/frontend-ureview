@@ -10,14 +10,18 @@ export const AddEvent = ({ setDisplayMaximizable }) => {
 
 	const defaultValues = {
 		name: '',
+		ambit: '',
+		hoursVoae: 0,
+		quotas: 0,
 		startDate: '',
 		finishDate: '',
+		url: '',
 		description: ''
 	}
 
 
 	return (
 
-		<FormEvent defaultValues={defaultValues} type={'addCourse'} setDisplayMaximizable={setDisplayMaximizable} />
+		<FormEvent defaultValues={defaultValues} type={'addEvent'} setDisplayMaximizable={setDisplayMaximizable} />
 	);
 }

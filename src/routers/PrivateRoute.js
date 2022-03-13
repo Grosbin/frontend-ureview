@@ -14,10 +14,11 @@ export const PrivateRoute = ({ children, isAuthenticated }) => {
 	// localStorage.setItem('lastPath', location.pathname);
 	// localStorage.setItem('searchPath', location.search);
 	const { pathname } = useLocation();
-	localStorage.setItem('lastPath', pathname);
+	console.log(pathname);
+
 	console.log(`Entro a privado: ${isAuthenticated}`);
 
 	return (
-		!!isAuthenticated ? children : <Navigate to='/sesion' />
+		!!isAuthenticated ? children : <Navigate to='/sesion' /> //TODO: Antes tenia la ruta /sesion
 	);
 };

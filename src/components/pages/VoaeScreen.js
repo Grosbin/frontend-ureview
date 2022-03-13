@@ -4,29 +4,45 @@ import { ToolBar } from '../ui/ToolBar'
 import { ListEvent } from '../VOAE/ListEvent'
 
 
+
 export const VoaeScreen = () => {
 
 	const [displayMaximizable, setDisplayMaximizable] = useState(false);
-	const [addCourse, setAddCourse] = useState(false);
-	const [editCourse, setEditCourse] = useState(false);
-	const [dataCourse, setDataCourse] = useState(null);
+	const [addContent, setAddContent] = useState(false);
+	const [editContent, setEditContent] = useState(false);
+	const [dataContent, setDataContent] = useState(null);
 
+	const courseActive = false;
+	const eventActive = true;
 
 
 	return (
 		<div className='main'>
+			{/* <h1>VOAE Screen</h1> */}
 			<Modal
 				displayMaximizable={displayMaximizable}
 				setDisplayMaximizable={setDisplayMaximizable}
-				addCourse={addCourse}
-				editCourse={editCourse}
-				dataCourse={dataCourse}
+
+				// addCourse={addContent}
+				// editCourse={editContent}
+				// dataCourse={dataContent}
+
+				addContent={addContent}
+				editContent={editContent}
+				dataContent={dataContent}
+
+				courseActive={courseActive}
+				eventActive={eventActive}
 			/>
 			<ToolBar
 				displayMaximizable={displayMaximizable}
 				setDisplayMaximizable={setDisplayMaximizable}
-				setAddCourse={setAddCourse}
-				setEditCourse={setEditCourse}
+
+				setAddContent={setAddContent}
+				setEditContent={setEditContent}
+
+				courseActive={courseActive}
+				eventActive={eventActive}
 			/>
 			<div className='course__container'>
 				{/* <AddCourse /> */}
@@ -35,9 +51,10 @@ export const VoaeScreen = () => {
 					<ListEvent
 						setDisplayMaximizable={setDisplayMaximizable}
 						displayMaximizable={displayMaximizable}
-						setEditCourse={setEditCourse}
-						setAddCourse={setAddCourse}
-						setDataCourse={setDataCourse}
+
+						setEditContent={setEditContent}
+						setAddContent={setAddContent}
+						setDataContent={setDataContent}
 
 					/>
 				</div>

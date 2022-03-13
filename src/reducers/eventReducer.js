@@ -3,10 +3,26 @@ import { types } from "../types/types";
 const initialState = {
 	events: [
 		{
-			id: 1, name: 'Evento 1', startDate: '01/01/2020', finishDate: '01/01/2020', description: 'Descripción del evento 1'
+			id: 1,
+			name: 'Evento 1',
+			ambit: 'Cultura',
+			hoursVoae: 2,
+			quotas: 23,
+			startDate: '01/01/2020',
+			finishDate: '01/01/2020',
+			url: 'www.voae.com',
+			description: 'Descripción del evento 1'
 		},
 		{
-			id: 2, name: 'Evento 2', startDate: '01/01/2020', finishDate: '01/01/2020', description: 'Descripción del evento 2'
+			id: 2,
+			name: 'Evento 2',
+			ambit: 'Social',
+			hoursVoae: 2,
+			quotas: 63,
+			startDate: '01/01/2020',
+			finishDate: '01/01/2020',
+			url: 'www.voae.com',
+			description: 'Descripción del evento 2'
 		}],
 
 	active: null

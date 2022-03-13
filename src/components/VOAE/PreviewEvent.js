@@ -1,24 +1,46 @@
 import React, { useState } from 'react'
 import { Modal } from '../ui/Modal';
+// import { ListCourse } from './ListCourse'
 import { ListEvent } from './ListEvent';
 
-export const PreviewCourse = () => {
+export const PreviewEvent = () => {
 	const [displayMaximizable, setDisplayMaximizable] = useState(false);
-	const [editCourse, setEditCourse] = useState(false);
-	const [idCourse, setIdCourse] = useState(null);
-	console.log('Estoy en preview course');
+	const [addContent, setAddContent] = useState(false);
+	const [editContent, setEditContent] = useState(false);
+	const [dataContent, setDataContent] = useState(null);
 
-	const setAddCourse = () => {
-		return false;
-	}
+	const courseActive = false;
+	const eventActive = true;
+
+	// const setAddCourse = () => {
+	// 	return false;
+	// }
 	return (
 		<div className='main'>
-			<Modal displayMaximizable={displayMaximizable} setDisplayMaximizable={setDisplayMaximizable} editCourse={editCourse} idCourse={idCourse} />
+			<Modal
+				displayMaximizable={displayMaximizable}
+				setDisplayMaximizable={setDisplayMaximizable}
+
+				addContent={addContent}
+				editContent={editContent}
+				dataContent={dataContent}
+
+				courseActive={courseActive}
+				eventActive={eventActive}
+			/>
 			<div className='course__container'>
 				{/* <AddCourse /> */}
 				<div className='course__list'>
 
-					<ListEvent setDisplayMaximizable={setDisplayMaximizable} setEditCourse={setEditCourse} setAddCourse={setAddCourse} setIdCourse={setIdCourse} />
+					<ListEvent
+						setDisplayMaximizable={setDisplayMaximizable}
+						displayMaximizable={displayMaximizable}
+
+						setEditContent={setEditContent}
+						setAddContent={setAddContent}
+						setDataContent={setDataContent}
+
+					/>
 				</div>
 			</div>
 		</div>

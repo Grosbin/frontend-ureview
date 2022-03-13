@@ -1,6 +1,7 @@
 .form__main {
   align-items: center;
   display: flex;
+  padding-top: 150px;
   padding-bottom: 70px;
   align-content: center;
   justify-content: center;
@@ -40,4 +41,12 @@
     width: 100%;
     min-width: 0;
   }
+}
+
+
+.p-inputgroup .p-float-label:last-child input {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }

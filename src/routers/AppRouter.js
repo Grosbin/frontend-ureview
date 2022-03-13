@@ -19,8 +19,11 @@ import { startLoadingCourse } from "../actions/course";
 
 export const AppRouter = () => {
 
-	const { isAuthenticated, uid } = useSelector(state => state.auth);
+	const { isAuthenticated, isStudent } = useSelector(state => state.auth);
 	const { course } = useSelector(state => state.course);
+
+
+
 
 	const dispatch = useDispatch();
 
@@ -42,17 +45,17 @@ export const AppRouter = () => {
 					<About />
 				} />
 				<Route path="sesion" element={
-					<PublicRoute isAuthenticated={isAuthenticated}>
+					<PublicRoute isAuthenticated={isAuthenticated} isStudent={isStudent}>
 						<LoginScreen />
 					</PublicRoute>
 				} />
 				<Route path="registro" element={
-					<PublicRoute isAuthenticated={isAuthenticated}>
+					<PublicRoute isAuthenticated={isAuthenticated} isStudent={isStudent}>
 						<RegisterScreen />
 					</PublicRoute>
 				} />
 				<Route path="estudiante/*" element={
-					<PrivateRoute isAuthenticated={isAuthenticated}>
+					<PrivateRoute isAuthenticated={isAuthenticated} >
 						<StudentRoute />
 					</PrivateRoute>
 				} />

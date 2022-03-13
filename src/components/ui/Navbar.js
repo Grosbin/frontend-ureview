@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router-dom';
 // import { Button } from 'primereact/button';
 import { SplitButton } from 'primereact/splitbutton';
 import { useDispatch, useSelector } from 'react-redux';
-import { professor, startLogout, student } from '../../actions/auth';
+import { message, professor, startLogout, student } from '../../actions/auth';
+import { background, backgroundProfessor, backgroundStudent } from '../../helpers/backgroudState';
 // import { SpeedDial } from 'primereact/speeddial';
 
 export const Navbar = () => {
@@ -25,6 +26,8 @@ export const Navbar = () => {
 			label: 'Inicio',
 			command: () => {
 				navigate('/');
+				background();
+				dispatch(message('', false));
 				// setActiveItem(false);
 			}
 		},
@@ -33,6 +36,8 @@ export const Navbar = () => {
 			label: 'Acerca de',
 			command: () => {
 				navigate('/acerca');
+				background();
+				dispatch(message('', false));
 				// setActiveItem(false);
 			}
 		},
@@ -44,7 +49,9 @@ export const Navbar = () => {
 			icon: 'pi pi-id-card',
 			command: () => {
 				navigate('/sesion');
+				// backgroundStudent();
 				dispatch(student());
+				dispatch(message('', false));
 				// localStorage.setItem('is-student', 'ok');
 				// setActiveItem(true);
 				// pi-user
@@ -57,7 +64,9 @@ export const Navbar = () => {
 			icon: 'pi pi-user-edit',
 			command: () => {
 				navigate('/sesion');
+				// backgroundProfessor();
 				dispatch(professor());
+				dispatch(message('', false));
 				// localStorage.setItem('is-student', '');
 				// setActiveItem(true);
 				// pi-user-edit
@@ -91,7 +100,7 @@ export const Navbar = () => {
 		{
 			label: 'Ver horas Art.140',
 			command: () => {
-				navigate('estudiante/ver-cursos');
+				navigate('estudiante/ver-eventos');
 			}
 		}
 	];

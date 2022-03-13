@@ -3,20 +3,12 @@ import { types } from "../types/types";
 
 export const startAddNewEvent = (event) => {
 	return (dispatch, getState) => {
-		// TODO: Cambiar el name por el id del usuario
-		// const { idUser } = getState().auth;
+
 		const id = new Date().getTime();
 		console.log(`Event id ${id}`);
-		// const newCourse = {
-		// 	id: new Date().getTime(),
-		// 	nameCourse: '',
-		// 	startDate: '',
-		// 	finishDate: '',
-		// 	description: '',
-		// }
 
 		dispatch(addNewEvent(id, event));
-		// dispatch(activeCourse(id, course));
+
 	}
 }
 
@@ -28,11 +20,11 @@ export const startEditEvent = (id, event) => {
 
 export const startDeleteEvent = (id) => {
 	return async (dispatch) => {
-		// const { idUser } = getState().auth;
-		// const id = new Date().getTime();
+
 		dispatch(deleteEvent(id));
 	}
 }
+
 
 export const startGetEvent = () => {
 	return async (dispatch) => {
@@ -62,7 +54,7 @@ export const addNewEvent = (id, event) => {
 	}
 }
 
-// Eliminar un curso
+
 export const deleteEvent = (id) => {
 	return {
 		type: types.deleteEvent,
@@ -74,14 +66,14 @@ export const editEvent = (id, event) => ({
 	type: types.editEvent,
 	payload: {
 		id,
-		course: {
+		events: {
 			id,
 			...event
 		}
 	}
 })
 
-//Curso Activo
+
 export const activeEvent = (id, event) => {
 	return {
 		type: types.activeEvent,
@@ -94,15 +86,15 @@ export const activeEvent = (id, event) => {
 
 export const getEvent = (event) => {
 	return {
-		type: types.getCourse,
+		type: types.getEvent,
 		payload: event
 	}
 }
 
-//Campo agregado
+
 export const startLoadingEvent = (event) => {
 	return async (dispatch) => {
-		// const course = await loadCourse(uid);
+
 		dispatch(setEvent(event));
 	}
 }

@@ -2,10 +2,22 @@ import React from 'react'
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteCourse, startEditCourse } from '../../actions/course';
+import { deleteCourse } from '../../actions/course';
+
+import { motion } from "framer-motion";
+import { variantsCard, variantsButton } from '../../helpers/framerValues';
 
 
-export const ListCourse = ({ setDisplayMaximizable, setEditCourse, setAddCourse, setDataCourse, displayMaximizable }) => {
+export const ListCourse = ({
+	setDisplayMaximizable,
+	setEditContent,
+	setAddContent,
+	setDataContent,
+	displayMaximizable
+
+}) => {
+
+	const MotionButton = motion(Button);
 
 	const dispatch = useDispatch();
 
@@ -29,16 +41,36 @@ export const ListCourse = ({ setDisplayMaximizable, setEditCourse, setAddCourse,
 
 		const courseActive = course.find(course => course.id === id);
 
-		setDataCourse(courseActive);
-		setEditCourse(true);
+		setDataContent(courseActive);
+		setEditContent(true);
 		setDisplayMaximizable(true);
-		setAddCourse(false);
+		setAddContent(false);
 	}
 
-	const registerCourse = <span><Button label="Inscribirse" icon="pi pi-user-plus" className="p-button-sm p-button-primary" style={{ marginLeft: '.2rem' }} /></span>
+	const registerCourse = <motion.span
+		whileHover="hover"
+		whileTap="tap"
+		variants={variantsButton}
+	>
+		<MotionButton
+			whileHover="hover"
+			whileTap="tap"
+			variants={variantsButton}
+
+			label="Inscribirse"
+			icon="pi pi-user-plus"
+			className="p-button-sm p-button-primary"
+			style={{ marginLeft: '.2rem' }}
+		/>
+	</motion.span>
 
 	const editCourseButton = (id, displayMaximizable) => <span>
-		<Button
+
+		<MotionButton
+			whileHover="hover"
+			whileTap="tap"
+			variants={variantsButton}
+
 			label="Editar"
 			icon="pi pi-undo"
 			className="p-button-warning"
@@ -47,7 +79,10 @@ export const ListCourse = ({ setDisplayMaximizable, setEditCourse, setAddCourse,
 			onClick={() => handleUpdate(id)}
 
 		/>
-		<Button
+		<MotionButton
+			whileHover="hover"
+			whileTap="tap"
+			variants={variantsButton}
 			label="Borrar"
 			disabled={displayMaximizable}
 			icon="pi pi-trash"
@@ -74,12 +109,18 @@ export const ListCourse = ({ setDisplayMaximizable, setEditCourse, setAddCourse,
 			{
 				//TODO: cambiar el h4 por un parrafo
 				course.map(index => (
-					<div key={index.id} className='card__container'>
+					<motion.div
+						initial="hidden"
+						animate="visible"
+						variants={variantsCard}
+						key={index.id}
+						className='card__container'
+					>
 						<Card footer={footer(index.id, displayMaximizable)} header={header} className='justify-content-center align-content-center' >
 							<h4>{index.name}</h4>
 							{index.description}
 						</Card>
-					</div>)
+					</motion.div>)
 				)
 			}
 		</div>

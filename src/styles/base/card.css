@@ -4,5 +4,18 @@
   align-content: center;
   justify-content: center;
   /* margin-left: 30px; */
+
 }
 
+.p-badge.p-badge-lg {
+  font-size: 1.125rem;
+  min-width: 2.25rem;
+  height: 2.25rem;
+  line-height: 2.25rem;
+  border-radius: 5px;
+}
+
+.p-badge.p-badge-warning {
+  background-color: var(--green-500);
+  color: #ffffff;
+}

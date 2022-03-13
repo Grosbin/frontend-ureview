@@ -4,6 +4,8 @@ const inialState = {
 	// TODO: cambiar el idUser por el id del usuario de la base de datos
 	isAuthenticated: false,
 	isStudent: null,
+	message: null,
+	error: false
 }
 
 export const authReducer = (state = inialState, action) => {
@@ -47,6 +49,12 @@ export const authReducer = (state = inialState, action) => {
 			return {
 				...state,
 				isAuthenticated: false
+			}
+		case types.message:
+			return {
+				...state,
+				message: action.payload.message,
+				error: action.payload.error
 			}
 		default:
 			return state

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AddCourse } from '../Courses/AddCourse'
+// import { AddCourse } from '../Courses/AddCourse'
 import { ListCourse } from '../Courses/ListCourse'
 import { Modal } from '../ui/Modal'
 import { ToolBar } from '../ui/ToolBar'
@@ -8,9 +8,12 @@ import { ToolBar } from '../ui/ToolBar'
 export const CourseScreenProfessor = () => {
 
 	const [displayMaximizable, setDisplayMaximizable] = useState(false);
-	const [addCourse, setAddCourse] = useState(false);
-	const [editCourse, setEditCourse] = useState(false);
-	const [dataCourse, setDataCourse] = useState(null);
+	const [addContent, setAddContent] = useState(false);
+	const [editContent, setEditContent] = useState(false);
+	const [dataContent, setDataContent] = useState(null);
+
+	const courseActive = true;
+	const eventActive = false;
 
 
 
@@ -19,15 +22,23 @@ export const CourseScreenProfessor = () => {
 			<Modal
 				displayMaximizable={displayMaximizable}
 				setDisplayMaximizable={setDisplayMaximizable}
-				addCourse={addCourse}
-				editCourse={editCourse}
-				dataCourse={dataCourse}
+
+				addContent={addContent}
+				editContent={editContent}
+				dataContent={dataContent}
+
+				courseActive={courseActive}
+				eventActive={eventActive}
 			/>
 			<ToolBar
 				displayMaximizable={displayMaximizable}
 				setDisplayMaximizable={setDisplayMaximizable}
-				setAddCourse={setAddCourse}
-				setEditCourse={setEditCourse}
+
+				setAddContent={setAddContent}
+				setEditContent={setEditContent}
+
+				courseActive={courseActive}
+				eventActive={eventActive}
 			/>
 			<div className='course__container'>
 				{/* <AddCourse /> */}
@@ -36,9 +47,10 @@ export const CourseScreenProfessor = () => {
 					<ListCourse
 						setDisplayMaximizable={setDisplayMaximizable}
 						displayMaximizable={displayMaximizable}
-						setEditCourse={setEditCourse}
-						setAddCourse={setAddCourse}
-						setDataCourse={setDataCourse}
+
+						setEditContent={setEditContent}
+						setAddContent={setAddContent}
+						setDataContent={setDataContent}
 
 					/>
 				</div>

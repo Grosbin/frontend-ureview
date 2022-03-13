@@ -1,6 +1,10 @@
+import { background } from "../helpers/backgroudState";
 import { fetchConToken, fetchSinToken } from "../helpers/fetch";
+import { MessagesHook } from "../hooks/MessagesHook";
+
 import { types } from "../types/types";
 
+// import { Message } from 'primereact/message';
 
 
 
@@ -20,6 +24,8 @@ export const startLoginEmailPasswordStudent = (email, password) => {
 		if (body.ok) {
 			localStorage.setItem('token', body.token);
 			localStorage.setItem('token-init-date', new Date().getTime());
+			background();
+			dispatch(message(body.msg, false));
 			dispatch(loginStudent({
 				uid: body.uid,
 				name: body.name,
@@ -28,6 +34,8 @@ export const startLoginEmailPasswordStudent = (email, password) => {
 		} else {
 			//TODO: Terminar las validaciones
 			console.log(body.msg);
+			dispatch(message(body.msg, true));
+
 		}
 
 	}
@@ -44,6 +52,8 @@ export const startLoginEmailPasswordProfessor = (email, password) => {
 		if (body.ok) {
 			localStorage.setItem('token', body.token);
 			localStorage.setItem('token-init-date', new Date().getTime());
+			background();
+			dispatch(message(body.msg, false));
 			dispatch(loginProfessor({
 				uid: body.uid,
 				name: body.name,
@@ -52,6 +62,7 @@ export const startLoginEmailPasswordProfessor = (email, password) => {
 		} else {
 			//TODO: Terminar las validaciones
 			console.log(body.msg);
+			dispatch(message(body.msg, true));
 		}
 
 		console.log(`El password es: ${password}`);
@@ -61,6 +72,7 @@ export const startLoginEmailPasswordProfessor = (email, password) => {
 export const startLogout = () => {
 	return (dispatch) => {
 		dispatch(logout());
+		dispatch(message('Sesión cerrada', false));
 		localStorage.clear();
 	}
 }
@@ -74,7 +86,8 @@ export const startRegisterStudent = (name, email, password) => {
 		if (body.ok) {
 			localStorage.setItem('token', body.token);
 			localStorage.setItem('token-init-date', new Date().getTime());
-
+			background();
+			dispatch(message(body.msg, false));
 			dispatch(loginStudent({
 				uid: body.uid,
 				name: body.name,
@@ -82,6 +95,8 @@ export const startRegisterStudent = (name, email, password) => {
 
 		} else {
 			console.log(body.msg);
+			dispatch(message(body.msg, true));
+
 		}
 	}
 }
@@ -95,7 +110,8 @@ export const startRegisterProfessor = (name, email, password) => {
 		if (body.ok) {
 			localStorage.setItem('token', body.token);
 			localStorage.setItem('token-init-date', new Date().getTime());
-
+			background();
+			dispatch(message(body.msg, false));
 			dispatch(loginProfessor({
 				uid: body.uid,
 				name: body.name,
@@ -103,6 +119,7 @@ export const startRegisterProfessor = (name, email, password) => {
 
 		} else {
 			console.log(body.msg);
+			dispatch(message(body.msg, true));
 		}
 	}
 }
@@ -197,5 +214,21 @@ export const student = () => {
 export const professor = () => {
 	return {
 		type: types.professor,
+	}
+}
+
+export const startMessage = (msg, isError) => {
+	return (dispatch) => {
+		dispatch(message(msg, isError));
+	}
+}
+
+export const message = (message, error) => {
+	return {
+		type: types.message,
+		payload: {
+			message,
+			error
+		}
 	}
 }
