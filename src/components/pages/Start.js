@@ -49,7 +49,7 @@ export const Start = () => {
 					initial="hidden"
 					animate="visible"
 					variants={variantsImg}
-					src={assets(`./LogoUreview.svg`)}
+					src={assets(`./LogoUreview.png`)}
 					alt="logoUreview"
 				/>
 

@@ -139,6 +139,8 @@ export const startChecking = () => {
 			// console.log('Es autenticado: ', !!uid);
 			const typeUser = body.email;
 
+			//TODO: Quitar esto si no funciona el errror de los colores
+			background();
 
 			if (typeUser.includes('@unah.hn')) {
 				dispatch(loginStudent({

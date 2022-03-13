@@ -14,6 +14,7 @@ import { ProfessorRoute } from "./ProfessorRoute";
 import { useEffect } from "react";
 import { startChecking } from "../actions/auth";
 import { startLoadingCourse } from "../actions/course";
+import { background } from "../helpers/backgroudState";
 
 
 
@@ -29,6 +30,7 @@ export const AppRouter = () => {
 
 	useEffect(() => {
 		dispatch(startChecking())
+		// background();
 		console.log('Estoy en AppRouter');
 		// dispatch(startLoadingCourse(course));
 	}, [dispatch, course])
