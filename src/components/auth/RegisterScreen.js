@@ -41,7 +41,7 @@ export const RegisterScreen = () => {
 	const dispatch = useDispatch();
 
 	// const [showMessage, setShowMessage] = useState(false);
-	const { isStudent, message, error } = useSelector(state => state.auth);
+	const { isStudent, message, error, } = useSelector(state => state.auth);
 	// const [formData, setFormData] = useState({});
 	const [validPassword, setValidPassword] = useState(true);
 
@@ -62,7 +62,7 @@ export const RegisterScreen = () => {
 		if (error) {
 			displayError();
 		}
-	}, [error])
+	}, [error, message]);
 
 	const { control, formState: { errors }, handleSubmit, reset } = useForm({ defaultValues });
 
