@@ -8,18 +8,27 @@ import { SplitButton } from 'primereact/splitbutton';
 import { useDispatch, useSelector } from 'react-redux';
 import { message, professor, startLogout, student } from '../../actions/auth';
 import { background, backgroundProfessor, backgroundStudent } from '../../helpers/backgroudState';
+import { motion } from "framer-motion"
+import { variantsNavbar } from '../../helpers/framerValues';
 // import { SpeedDial } from 'primereact/speeddial';
+
 
 export const Navbar = () => {
 
+
+
+
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	// const [activeItem, setActiveItem] = useState(false);
+
 	const { isAuthenticated, isStudent, name } = useSelector(state => state.auth);
 
-	useEffect(() => {
+	let nameItem = 'Usuario'
 
-	}, []);
+	if (name) {
+		nameItem = name.split(' ')[0];
+	}
+
 
 	let items = [
 		{
@@ -154,11 +163,16 @@ export const Navbar = () => {
 
 	const start = <img alt="logo" src="logo.png" onError={(e) => e.target.src = 'logo512.svg'} height="50" className="mr-2"></img>;
 	const access = <SplitButton className='p-button-info' label="Acceso" icon="" onClick={handleLogin} model={itemsAccess}></SplitButton>
-	const user = <SplitButton label={name} icon="pi pi-user" className={`${isStudent ? 'p-button-info' : 'p-button-warning'}`} model={itemsUser} />
+	const user = <SplitButton label={nameItem} icon="pi pi-user" className={`${isStudent ? 'p-button-info' : 'p-button-warning'}`} model={itemsUser} />
+	// const user = <Avatar label={name.charAt(0)} className={`mr-2`} style={{ backgroundColor: '#2196F3', color: '#ffffff' }} size="large" shape="circle" />
 	return (
-		<div className={`header ${isAuthenticated ? (isStudent ? 'header-student' : 'header-professor') : 'header-normal'}`}>
+		<motion.div
+			initial="hidden"
+			animate="visible"
+			variants={variantsNavbar}
+			className={`header ${isAuthenticated ? (isStudent ? 'header-student' : 'header-professor') : 'header-normal'}`}>
 			<Menubar model={isAuthenticated ? (isStudent ? items.concat(itemsStudent) : items.concat(itemsProfessor)) : items} start={start} end={isAuthenticated ? user : access} />
-		</div>
+		</motion.div>
 	);
 }
 

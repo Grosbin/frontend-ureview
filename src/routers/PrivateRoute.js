@@ -19,6 +19,6 @@ export const PrivateRoute = ({ children, isAuthenticated }) => {
 	console.log(`Entro a privado: ${isAuthenticated}`);
 
 	return (
-		!!isAuthenticated ? children : <Navigate to='/sesion' /> //TODO: Antes tenia la ruta /sesion
+		!!isAuthenticated ? children : <Navigate to='/' /> //TODO: Antes tenia la ruta /sesion
 	);
 };

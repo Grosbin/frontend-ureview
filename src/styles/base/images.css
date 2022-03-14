@@ -1,8 +1,20 @@
 .logo__Ureview{
+	margin: 0px auto;
 	position: relative;
-	max-width: 100%;
+	width: 100%;
 	grid-area: logoUreview;
 }
+
+.img{
+	 width:100%;
+	}
+
+  .img img{
+	width: 100%;
+  }
+
+
+
 
 .profile__about{
 	width: 90px;

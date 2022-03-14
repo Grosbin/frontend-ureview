@@ -17,19 +17,21 @@ export const PublicRoute = ({ children, isAuthenticated, isStudent }) => {
 
 
 	useEffect(() => {
-		if (!isStudent && (pathname === '/sesion' || pathname === '/registro')) {
+		if (!isStudent) {
 			backgroundProfessor();
 		}
 
-		if (isStudent && (pathname === '/sesion' || pathname === '/registro')) {
+		if (isStudent) {
 			backgroundStudent();
 		}
 
-		if (pathname !== '/sesion' && pathname !== '/registro') {
-			background();
-		}
+		// if (pathname !== '/sesion' && pathname !== '/registro') {
+		// 	background();
+		// }
 
-	}, [pathname, isStudent]);
+		console.log('Entro a PublicRoute');
+
+	}, [isStudent]);
 
 
 

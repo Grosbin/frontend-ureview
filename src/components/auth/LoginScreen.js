@@ -31,7 +31,7 @@ const variantsCard = {
 export const LoginScreen = () => {
 
 	const toast = useRef(null);
-	// const [counterSubmit, setCounterSubmit] = React.useState(0);
+	const [counterSubmit, setCounterSubmit] = React.useState(null);
 	console.log('Entro a MessagesHook');
 
 
@@ -47,11 +47,12 @@ export const LoginScreen = () => {
 
 	}
 
+	// console.log(message);
 	useEffect(() => {
-		if (error) {
+		if (message) {
 			displayError();
 		}
-	}, [error, message]);
+	}, [message]);
 
 	// let valueEmail = '';
 	// let valuePassword = '';
@@ -86,7 +87,7 @@ export const LoginScreen = () => {
 		// }
 		console.log('Entro al display error')
 		// navigate(lastPath, { replace: true });
-		// setCounterSubmit(counterSubmit + 1);
+		setCounterSubmit(counterSubmit + 1);
 		reset();
 		// console.log('Entro a submit' + lastPath);
 	};
@@ -156,7 +157,7 @@ export const LoginScreen = () => {
 											className="mt-2 mb-4 p-button-info"
 										/>
 									</motion.div>
-									<Link to="/registro" className="link" onClick={() => { toast.current.clear() }}>Registrarse</Link>
+									<Link to="/registro" className="link" onClick={() => dispatch(startMessage('', false))}>Registrarse</Link>
 								</form>
 							</div>
 						</div>

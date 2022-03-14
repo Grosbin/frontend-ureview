@@ -43,6 +43,7 @@ export const RegisterScreen = () => {
 	// const [showMessage, setShowMessage] = useState(false);
 	const { isStudent, message, error, } = useSelector(state => state.auth);
 	// const [formData, setFormData] = useState({});
+	// const [counterSubmit, setCounterSubmit] = React.useState(null);
 	const [validPassword, setValidPassword] = useState(true);
 
 	const defaultValues = {
@@ -59,10 +60,10 @@ export const RegisterScreen = () => {
 
 
 	useEffect(() => {
-		if (error) {
+		if (message) {
 			displayError();
 		}
-	}, [error, message]);
+	}, [message]);
 
 	const { control, formState: { errors }, handleSubmit, reset } = useForm({ defaultValues });
 
@@ -87,7 +88,7 @@ export const RegisterScreen = () => {
 			background();
 			dispatch(startRegisterProfessor(data.name, data.email, data.password));
 		}
-
+		// setCounterSubmit(counterSubmit + 1);
 		// setShowMessage(true);
 		// setFormData(data);
 	};
@@ -140,9 +141,19 @@ export const RegisterScreen = () => {
 								<form onSubmit={handleSubmit(onSubmit)} className="p-fluid">
 									<div className="field">
 										<span className="p-float-label">
-											<Controller name="name" control={control} rules={{ required: 'El nombre es requerido.' }} render={({ field, fieldState }) => (
-												<InputText keyfilter="alpha" id={field.name} {...field} autoFocus className={classNames({ 'p-invalid': fieldState.invalid })} />
-											)} />
+											<Controller
+												name="name"
+												control={control}
+												rules={{
+													required: 'El nombre es requerido.',
+													pattern: {
+														value: /^[a-zA-ZÀ-ÿ\s]{3,40}$/,
+														message: 'Nombre no valido.'
+													}
+
+												}} render={({ field, fieldState }) => (
+													<InputText id={field.name} {...field} autoFocus className={classNames({ 'p-invalid': fieldState.invalid })} />
+												)} />
 											<label htmlFor="name" className={classNames({ 'p-error': errors.name })}>Nombre*</label>
 										</span>
 										{getFormErrorMessage('name')}
@@ -217,7 +228,7 @@ export const RegisterScreen = () => {
 										<Button type="submit" label="Guardar" className="mt-2 mb-4 p-button-info" />
 
 									</motion.div>
-									<Link to="/sesion" className="link" onClick={() => { toast.current.clear() }}>Iniciar Sesión</Link>
+									<Link to="/sesion" className="link" onClick={() => dispatch(startMessage('', false))}>Iniciar Sesión</Link>
 								</form>
 							</div>
 						</div>

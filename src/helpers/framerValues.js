@@ -23,3 +23,8 @@ export const variantsCard = {
 	},
 
 }
+
+export const variantsNavbar = {
+	visible: { y: 0, opacity: 1, transition: { delay: 0.2 } },
+	hidden: { y: -10, opacity: 0 },
+}

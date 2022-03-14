@@ -25,11 +25,13 @@ export const Start = () => {
 
 	const variantsButton = {
 		visible: {
-			x: 30,
-			transition: { duration: 0.3, },
+			x: 20,
+			opacity: 1,
+			transition: { type: "spring", stiffeness: 100, delay: 0.2 },
 		},
 		hidden: {
-			x: -100
+			opacity: 0,
+			x: -100,
 		},
 		hover: {
 			scale: 0.9,
@@ -43,35 +45,37 @@ export const Start = () => {
 
 	return (
 		<div className='main'>
-
 			<div className='logo__Ureview'>
-				<motion.img
-					initial="hidden"
-					animate="visible"
-					variants={variantsImg}
-					src={assets(`./LogoUreview.png`)}
-					alt="logoUreview"
-				/>
 
-				<motion.div
-					whileHover="hover"
-					whileTap="tap"
-					animate="visible"
-					variants={variantsButton}
 
-				//Desabilita la animacion
-				// initial={false}
-
-				>
-					<Button
-
-						className='button__tutorial p-button-black'
-						label="Ver Tutorial"
+				<div className=' img'>
+					<motion.img
+						initial="hidden"
+						animate="visible"
+						variants={variantsImg}
+						src={assets(`./LogoUreview.png`)}
+						alt="logoUreview"
 					/>
 
-				</motion.div>
-			</div>
+					<motion.div
+						whileHover="hover"
+						whileTap="tap"
+						animate="visible"
+						variants={variantsButton}
 
+					//Desabilita la animacion
+					// initial={false}
+
+					>
+						<Button
+
+							className='button__tutorial p-button-black'
+							label="Ver Tutorial"
+						/>
+
+					</motion.div>
+				</div>
+			</div>
 			<div className='item__course'>
 
 			</div>
