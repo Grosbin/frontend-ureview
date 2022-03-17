@@ -1,8 +1,8 @@
 
 // import { useSelector } from "react-redux";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { background, backgroundProfessor, backgroundStudent } from "../helpers/backgroudState";
+// import { background, backgroundProfessor, backgroundStudent } from "../helpers/backgroudState";
 
 
 export const PublicRoute = ({ children, isAuthenticated, isStudent }) => {
@@ -16,22 +16,28 @@ export const PublicRoute = ({ children, isAuthenticated, isStudent }) => {
 	console.log(pathname);
 
 
-	useEffect(() => {
-		if (!isStudent) {
-			backgroundProfessor();
-		}
+	// useEffect(() => {
+	// 	console.log('Entro a Effecto problema de color')
+	// 	if (!isAuthenticated) {
 
-		if (isStudent) {
-			backgroundStudent();
-		}
+	// 		if (!isStudent) {
+	// 			backgroundProfessor();
+	// 		}
 
-		// if (pathname !== '/sesion' && pathname !== '/registro') {
-		// 	background();
-		// }
+	// 		if (isStudent) {
+	// 			backgroundStudent();
+	// 		}
 
-		console.log('Entro a PublicRoute');
 
-	}, [isStudent]);
+	// 	}
+
+	// 	// if (pathname !== '/sesion' && pathname !== '/registro') {
+	// 	// 	background();
+	// 	// }
+
+	// 	console.log('Entro a PublicRoute');
+
+	// }, [isStudent]);
 
 
 

@@ -1,6 +1,9 @@
-import { background } from "../helpers/backgroudState";
+// import { background } from "../helpers/backgroudState";
+import { renderMatches } from "react-router-dom";
+import { Alerts } from "../components/ui/Alerts";
+
 import { fetchConToken, fetchSinToken } from "../helpers/fetch";
-import { MessagesHook } from "../hooks/MessagesHook";
+// import { MessagesHook } from "../hooks/MessagesHook";
 
 import { types } from "../types/types";
 
@@ -17,6 +20,7 @@ export const startLoginEmailPasswordStudent = (email, password) => {
 
 		const resp = await fetchSinToken('estudiante/acceso-estudiante', { email, password }, 'POST');
 		const body = await resp.json();
+		dispatch(message('', false));
 
 
 
@@ -24,8 +28,7 @@ export const startLoginEmailPasswordStudent = (email, password) => {
 		if (body.ok) {
 			localStorage.setItem('token', body.token);
 			localStorage.setItem('token-init-date', new Date().getTime());
-			background();
-			dispatch(message(body.msg, false));
+			// background();
 			dispatch(loginStudent({
 				uid: body.uid,
 				name: body.name,
@@ -36,6 +39,9 @@ export const startLoginEmailPasswordStudent = (email, password) => {
 			console.log(body.msg);
 			dispatch(message(body.msg, true));
 
+			// return <Alerts message={body.msg} error={true} />
+
+
 		}
 
 	}
@@ -45,6 +51,7 @@ export const startLoginEmailPasswordProfessor = (email, password) => {
 	return async (dispatch) => {
 		const resp = await fetchSinToken('docente/acceso-docente', { email, password }, 'POST');
 		const body = await resp.json();
+		dispatch(message('', false));
 
 
 
@@ -52,8 +59,7 @@ export const startLoginEmailPasswordProfessor = (email, password) => {
 		if (body.ok) {
 			localStorage.setItem('token', body.token);
 			localStorage.setItem('token-init-date', new Date().getTime());
-			background();
-			dispatch(message(body.msg, false));
+			// background();
 			dispatch(loginProfessor({
 				uid: body.uid,
 				name: body.name,
@@ -81,13 +87,13 @@ export const startRegisterStudent = (name, email, password) => {
 	return async (dispatch) => {
 		const resp = await fetchSinToken('estudiante/registro-estudiante', { name, email, password }, 'POST');
 		const body = await resp.json();
+		dispatch(message('', false));
 
 		// console.log(body);
 		if (body.ok) {
 			localStorage.setItem('token', body.token);
 			localStorage.setItem('token-init-date', new Date().getTime());
-			background();
-			dispatch(message(body.msg, false));
+			// background();
 			dispatch(loginStudent({
 				uid: body.uid,
 				name: body.name,
@@ -105,13 +111,13 @@ export const startRegisterProfessor = (name, email, password) => {
 	return async (dispatch) => {
 		const resp = await fetchSinToken('docente/registro-docente', { name, email, password }, 'POST');
 		const body = await resp.json();
+		dispatch(message('', false));
 
 		// console.log(body);
 		if (body.ok) {
 			localStorage.setItem('token', body.token);
 			localStorage.setItem('token-init-date', new Date().getTime());
-			background();
-			dispatch(message(body.msg, false));
+			// background();
 			dispatch(loginProfessor({
 				uid: body.uid,
 				name: body.name,
@@ -140,7 +146,7 @@ export const startChecking = () => {
 			const typeUser = body.email;
 
 			//TODO: Quitar esto si no funciona el errror de los colores
-			background();
+			// background();
 
 			if (typeUser.includes('@unah.hn')) {
 				dispatch(loginStudent({

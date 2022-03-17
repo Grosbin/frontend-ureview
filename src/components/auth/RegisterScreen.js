@@ -4,14 +4,14 @@ import { useForm, Controller } from 'react-hook-form';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { Password } from 'primereact/password';
-import { Dialog } from 'primereact/dialog';
+// import { Dialog } from 'primereact/dialog';
 import { Divider } from 'primereact/divider';
 import { classNames } from 'primereact/utils';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { startMessage, startRegisterProfessor, startRegisterStudent } from '../../actions/auth';
 import { motion } from "framer-motion";
-import { background, backgroundProfessor } from '../../helpers/backgroudState';
+// import { background, backgroundProfessor } from '../../helpers/backgroudState';
 import { Toast } from 'primereact/toast';
 
 export const RegisterScreen = () => {
@@ -78,14 +78,14 @@ export const RegisterScreen = () => {
 			console.log('Dispact de estudiante');
 			setValidPassword(true);
 			reset();
-			background();
+			// background();
 			dispatch(startRegisterStudent(data.name, data.email, data.password));
 		} else if (!isStudent) {
 
 			console.log('Dispatch de profesor')
 			setValidPassword(true);
 			reset();
-			background();
+			// background();
 			dispatch(startRegisterProfessor(data.name, data.email, data.password));
 		}
 		// setCounterSubmit(counterSubmit + 1);
@@ -114,7 +114,7 @@ export const RegisterScreen = () => {
 	);
 
 	return (
-		<div className='main'>
+		<div className={`main ${isStudent ? 'is__student' : 'is__professor'}`}>
 			<Toast ref={toast}></Toast>
 			<div className='form__main'>
 				<motion.div

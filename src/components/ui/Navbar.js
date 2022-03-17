@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Menubar } from 'primereact/menubar';
 // import { InputText } from 'primereact/inputtext';
 import { useNavigate } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { SplitButton } from 'primereact/splitbutton';
 import { useDispatch, useSelector } from 'react-redux';
 import { message, professor, startLogout, student } from '../../actions/auth';
-import { background, backgroundProfessor, backgroundStudent } from '../../helpers/backgroudState';
+// import { background, backgroundProfessor, backgroundStudent } from '../../helpers/backgroudState';
 import { motion } from "framer-motion"
 import { variantsNavbar } from '../../helpers/framerValues';
 // import { SpeedDial } from 'primereact/speeddial';
@@ -35,7 +35,7 @@ export const Navbar = () => {
 			label: 'Inicio',
 			command: () => {
 				navigate('/');
-				background();
+				// background();
 				dispatch(message('', false));
 				// setActiveItem(false);
 			}
@@ -45,7 +45,7 @@ export const Navbar = () => {
 			label: 'Acerca de',
 			command: () => {
 				navigate('/acerca');
-				background();
+				// background();
 				dispatch(message('', false));
 				// setActiveItem(false);
 			}

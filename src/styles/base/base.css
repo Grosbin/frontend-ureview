@@ -28,6 +28,8 @@ body {
   background-color: var(--blue-600);
 }
 
+
+
 .link {
   text-decoration: none;
   color: var(--blue-800);
@@ -40,10 +42,12 @@ body {
   /* background-color: rgb(226, 226, 226); */
   padding: 100px 30px 30px 30px;
   margin: 0;
+  position: relative;
   /* justify-content: center; */
   /* width: 1200px; */
   width: 100vw;
   height: 100vh;
+
 }
 .container {
   /* display: flex;

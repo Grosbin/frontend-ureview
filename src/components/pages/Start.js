@@ -27,7 +27,7 @@ export const Start = () => {
 		visible: {
 			x: 20,
 			opacity: 1,
-			transition: { type: "spring", stiffeness: 100, delay: 0.2 },
+			transition: { type: "spring", stiffeness: 100, delay: 0.1 }, //TODO: Antes tenia delay: 0.2
 		},
 		hidden: {
 			opacity: 0,

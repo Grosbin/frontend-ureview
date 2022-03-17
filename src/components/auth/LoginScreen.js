@@ -1,6 +1,6 @@
 
-import React, { useEffect, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
@@ -15,7 +15,8 @@ import { variantsButton } from '../../helpers/framerValues';
 
 
 import { Toast } from 'primereact/toast';
-import { background } from '../../helpers/backgroudState';
+import { assets } from '../../helpers/assets';
+// import { background } from '../../helpers/backgroudState';
 
 const variantsCard = {
 	visible: {
@@ -31,7 +32,8 @@ const variantsCard = {
 export const LoginScreen = () => {
 
 	const toast = useRef(null);
-	const [counterSubmit, setCounterSubmit] = React.useState(null);
+	const [counterSubmit, setCounterSubmit] = useState(null);
+	// const [counterSubmitStudent, setCounterSubmitStudent] = useState(null);
 	console.log('Entro a MessagesHook');
 
 
@@ -43,16 +45,11 @@ export const LoginScreen = () => {
 	const { isStudent, message, error } = useSelector(state => state.auth);
 
 	const displayError = () => {
-		toast.current.show({ severity: 'error', summary: 'Error de Autenticación', detail: message, life: 7000 });
+		toast.current.show({ severity: 'error', summary: 'Error de Autenticación', detail: message, life: 5000 });
 
 	}
 
 	// console.log(message);
-	useEffect(() => {
-		if (message) {
-			displayError();
-		}
-	}, [message]);
 
 	// let valueEmail = '';
 	// let valuePassword = '';
@@ -72,6 +69,12 @@ export const LoginScreen = () => {
 
 	const { control, formState: { errors }, handleSubmit, reset } = useForm({ defaultValues });
 
+	useEffect(() => {
+		if (message && error) {
+			displayError();
+		}
+
+	}, [message, error]);
 
 	const onSubmit = (data) => {
 		if (isStudent) {
@@ -81,14 +84,14 @@ export const LoginScreen = () => {
 			dispatch(startLoginEmailPasswordProfessor(data.email, data.password));
 
 		}
-
-		// if (error) {
-		// 	displayError();
-		// }
 		console.log('Entro al display error')
+		// setCounterSubmitStudent(counterSubmitStudent + 1);
 		// navigate(lastPath, { replace: true });
-		setCounterSubmit(counterSubmit + 1);
-		reset();
+		// dispatch(message('', false));
+		if (!error) {
+			reset();
+		}
+
 		// console.log('Entro a submit' + lastPath);
 	};
 
@@ -97,8 +100,9 @@ export const LoginScreen = () => {
 	};
 
 	return (
-		<div className='main'>
+		<div className={`main img__form  ${isStudent ? 'is__student img__student' : 'is__professor img__professor'}`}>
 			<Toast ref={toast}></Toast>
+
 			<div className='form__main'>
 				<motion.div
 					initial="hidden"
@@ -163,6 +167,11 @@ export const LoginScreen = () => {
 						</div>
 					</div>
 				</motion.div>
+
+			</div>
+			<div className='img__UNAH-login '>
+
+				{/* <img src={assets(`./UNAH.png`)} alt="UNAH" /> */}
 			</div>
 		</div>
 	);
