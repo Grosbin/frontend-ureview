@@ -21,7 +21,7 @@
 
 .p-dialog .p-dialog-header {
     border-bottom: 0 none;
-    background: var(--blue-500);
+    background: #0062ff;
     color: #ffffff;
     /* padding: 1.5rem; */
     border-top-right-radius: 4px;

@@ -71,12 +71,12 @@ export const FormEvent = ({
 			console.log(data)
 
 			console.log('Ambito', data.ambit.ambit)
-			// console.log('Horas', data.hoursVoae)
+			// console.log('Horas', data.hours)
 			// console.log('Cupos', data.quotas)
 			setDisplayMaximizable(false);
 		}
 		if (type === 'editEvent') {
-			console.log(data.name, data.startDate)
+			console.log(data.name, data.start)
 			dispatch(startEditEvent(data.id, data));
 			console.log('Curso Editado ' + data.name);
 			setDisplayMaximizable(false);
@@ -116,7 +116,11 @@ export const FormEvent = ({
 							<Controller
 								name="name"
 								control={control}
-								rules={{ required: 'El nombre es requerido.' }}
+								rules={{
+									required: 'El nombre es requerido.',
+									minLength: { value: 3, message: 'El nombre debe tener al menos 3 caracteres.' },
+									maxLength: { value: 40, message: 'El nombre debe tener máximo 40 caracteres.' }
+								}}
 								render={({ field, fieldState }) => (
 									<InputText
 										id={field.name}
@@ -169,21 +173,21 @@ export const FormEvent = ({
 								<span className="p-float-label">
 
 									<Controller
-										name="hoursVoae"
+										name="hours"
 
 										control={control}
 										rules={{ required: 'Las horas asignadas son requerida' }}
 										render={({ field, fieldState }) => (
 
 											<InputNumber
-												id={field.hoursVoae}
+												id={field.hours}
 												required={true}
-												inputId={field.hoursVoae} //TODO: Da errror
+												inputId={field.hours} //TODO: Da errror
 												value={field.value}
 												onValueChange={(e) => field.onChange(e.value)}
 												mode="decimal" //TODO: Da errror
 												showButtons
-												min={0}
+												min={1}
 												max={60}
 												suffix=" Horas"
 												placeholder='Horas asignadas*'
@@ -192,10 +196,10 @@ export const FormEvent = ({
 
 										)} />
 
-									{/* <label htmlFor="hoursVoae" className={classNames({ 'p-error': errors.hoursVoae })}>Horas Asignadas*</label> */}
+									{/* <label htmlFor="hours" className={classNames({ 'p-error': errors.hours })}>Horas Asignadas*</label> */}
 								</span>
 
-								{getFormErrorMessage('hoursVoae')}
+								{getFormErrorMessage('hours')}
 
 							</div>
 
@@ -222,11 +226,12 @@ export const FormEvent = ({
 												onValueChange={(e) => field.onChange(e.value)}
 												mode="decimal"
 												showButtons
-												suffix=" Cupos"
-												min={0}
+												autoFocus={false}
+												min={1}
 												max={500}
+												suffix=" Cupos"
+												placeholder='Número de Cupos*'
 												className={classNames({ 'p-invalid': fieldState.invalid })}
-												placeholder="Número de cupos*"
 											/>
 
 										)} />
@@ -247,7 +252,7 @@ export const FormEvent = ({
 								<span className="p-float-label">
 
 									<Controller
-										name="startDate"
+										name="start"
 
 										control={control}
 										rules={{ required: 'La fecha es requerida.' }}
@@ -261,7 +266,7 @@ export const FormEvent = ({
 												locale='es'
 												value={startDateForm}
 												onChange={(e) => setStartDateForm(e.value)}
-												id={field.startDate}
+												id={field.start}
 												{...field}
 												// autoFocus
 												className={classNames({ 'p-invalid': fieldState.invalid })}
@@ -272,11 +277,11 @@ export const FormEvent = ({
 
 										)} />
 									<label
-										htmlFor="startDate"
-										className={classNames({ 'p-error': errors.startDate })}
+										htmlFor="start"
+										className={classNames({ 'p-error': errors.start })}
 									>Fecha*</label>
 								</span>
-								{getFormErrorMessage('startDate')}
+								{getFormErrorMessage('start')}
 							</div>
 						</div>
 
@@ -288,7 +293,7 @@ export const FormEvent = ({
 									<span className="p-float-label">
 
 										<Controller
-											name="finishDate"
+											name="finish"
 
 											control={control}
 											rules={{ required: 'La duración es requerida.' }}
@@ -302,7 +307,7 @@ export const FormEvent = ({
 													locale='es'
 													value={finishDateForm}
 													onChange={(e) => setFinishDateForm(e.value)}
-													id={field.finishDate}
+													id={field.finish}
 													{...field}
 													// autoFocus
 													className={classNames({ 'p-invalid': fieldState.invalid, 'p-button-info': true })}
@@ -316,13 +321,13 @@ export const FormEvent = ({
 
 											)} />
 										<label
-											htmlFor="finishDate"
-											className={classNames({ 'p-error': errors.finishDate })}
+											htmlFor="finish"
+											className={classNames({ 'p-error': errors.finish })}
 										>Duración*</label>
 									</span>
 
 								</div>
-								{getFormErrorMessage('finishDate')}
+								{getFormErrorMessage('finish')}
 							</div>
 						</div>
 
@@ -364,7 +369,10 @@ export const FormEvent = ({
 								name="description"
 
 								control={control}
-								rules={{ required: false }}
+								rules={{
+									required: false,
+									maxLength: { value: 500, message: 'La descripción debe tener máximo 500 caracteres.' }
+								}}
 								render={({ field }) => (
 
 									<InputTextarea
@@ -377,10 +385,11 @@ export const FormEvent = ({
 								)} />
 							<label
 								htmlFor="description"
-
+								className={classNames({ 'p-error': errors.description })}
 							>Descripción</label>
 
 						</span>
+						{getFormErrorMessage('description')}
 					</div>
 
 					<MotionButton

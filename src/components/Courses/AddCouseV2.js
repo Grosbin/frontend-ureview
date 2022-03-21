@@ -10,8 +10,8 @@ export const AddCourseV2 = ({ setDisplayMaximizable }) => {
 
 	const defaultValues = {
 		name: '',
-		startDate: '',
-		finishDate: '',
+		start: '',
+		finish: '',
 		description: ''
 	}
 

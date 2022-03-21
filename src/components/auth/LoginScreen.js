@@ -28,6 +28,19 @@ const variantsCard = {
 	}
 }
 
+const variantsImgUHAN = {
+	visible: {
+		y: 0,
+		opacity: 1,
+		transition: { duration: 0.5 },
+
+	},
+	hidden: {
+		y: 1000,
+		opacity: 0,
+	}
+}
+
 
 export const LoginScreen = () => {
 
@@ -100,7 +113,7 @@ export const LoginScreen = () => {
 	};
 
 	return (
-		<div className={`main img__form  ${isStudent ? 'is__student img__student' : 'is__professor img__professor'}`}>
+		<div className={`main img__form  ${isStudent ? 'is__student' : 'is__professor'}`}>
 			<Toast ref={toast}></Toast>
 
 			<div className='form__main'>
@@ -169,9 +182,15 @@ export const LoginScreen = () => {
 				</motion.div>
 
 			</div>
-			<div className='img__UNAH-login '>
+			<div className='img__UNAH-login'>
+				<motion.div
+					initial="hidden"
+					animate="visible"
+					variants={variantsImgUHAN}
+					className='img__UNAH'>
+					<img src={assets(`${isStudent ? './UNAH-Student-01.png' : './UNAH-Professor-01.png'}`)} alt="UNAH" />
+				</motion.div>
 
-				{/* <img src={assets(`./UNAH.png`)} alt="UNAH" /> */}
 			</div>
 		</div>
 	);

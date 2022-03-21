@@ -42,18 +42,18 @@ export const CourseScreenProfessor = () => {
 			/>
 			<div className='course__container'>
 				{/* <AddCourse /> */}
-				<div className='course__list'>
+				{/* <div className='course__list'> */}
 
-					<ListCourse
-						setDisplayMaximizable={setDisplayMaximizable}
-						displayMaximizable={displayMaximizable}
+				<ListCourse
+					setDisplayMaximizable={setDisplayMaximizable}
+					displayMaximizable={displayMaximizable}
 
-						setEditContent={setEditContent}
-						setAddContent={setAddContent}
-						setDataContent={setDataContent}
+					setEditContent={setEditContent}
+					setAddContent={setAddContent}
+					setDataContent={setDataContent}
 
-					/>
-				</div>
+				/>
+				{/* </div> */}
 			</div>
 		</div>
 	)

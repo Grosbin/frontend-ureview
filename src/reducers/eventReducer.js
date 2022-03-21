@@ -1,30 +1,7 @@
 import { types } from "../types/types";
 
 const initialState = {
-	events: [
-		{
-			id: 1,
-			name: 'Evento 1',
-			ambit: 'Cultura',
-			hoursVoae: 2,
-			quotas: 23,
-			startDate: '01/01/2020',
-			finishDate: '01/01/2020',
-			url: 'www.voae.com',
-			description: 'Descripción del evento 1'
-		},
-		{
-			id: 2,
-			name: 'Evento 2',
-			ambit: 'Social',
-			hoursVoae: 2,
-			quotas: 63,
-			startDate: '01/01/2020',
-			finishDate: '01/01/2020',
-			url: 'www.voae.com',
-			description: 'Descripción del evento 2'
-		}],
-
+	events: [],
 	active: null
 }
 
@@ -53,13 +30,7 @@ export const eventReducer = (state = initialState, action) => {
 				events: state.events.filter(events => events.id !== action.payload),
 				active: null
 			}
-
-		case types.getEvents:
-			return {
-				...state,
-				events: action.payload
-			}
-		case types.loadEvent:
+		case types.getEvent:
 			return {
 				...state,
 				events: [...action.payload]

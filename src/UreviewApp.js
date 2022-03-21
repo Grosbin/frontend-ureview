@@ -1,4 +1,6 @@
-import 'primereact/resources/themes/lara-light-indigo/theme.css';  //theme
+// import 'primereact/resources/themes/lara-light-indigo/theme.css';  //theme
+import 'primereact/resources/themes/lara-light-blue/theme.css';  //theme
+// import 'primereact/resources/themes/vela-blue/theme.css';  //theme
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';

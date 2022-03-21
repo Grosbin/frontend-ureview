@@ -53,7 +53,7 @@ export const Start = () => {
 						initial="hidden"
 						animate="visible"
 						variants={variantsImg}
-						src={assets(`./LogoUreview.png`)}
+						src={assets(`./LogoUreview-01.png`)}
 						alt="logoUreview"
 					/>
 

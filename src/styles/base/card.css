@@ -20,3 +20,28 @@
   color: #ffffff;
 }
 
+.header__card{
+  position: relative;
+    display: inline-block;
+    text-align: center;
+    border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.header__card-img{
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.texto-header{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+ 
+}
+
+.card__description{
+ overflow: hidden;
+}

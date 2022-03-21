@@ -12,6 +12,7 @@ export const types = {
 
 
 	// Curso
+	curseStartAddNew: 'Start Add New',
 	addCourse: 'Add Course',
 	editCourse: 'Edit Course',
 	deleteCourse: 'Delete Course',
@@ -26,7 +27,7 @@ export const types = {
 	editEvent: 'Edit Event',
 	deleteEvent: 'Delete Event',
 	activeEvent: 'Active Event',
-	getEvents: 'Get Events',
+	getEvent: 'Get Event',
 	loadEvent: 'Load Event',
 
 

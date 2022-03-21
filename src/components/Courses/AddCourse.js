@@ -25,8 +25,8 @@ export const AddCourse = () => {
 
 	const defaultValues = {
 		name: '',
-		startDate: '',
-		finishDate: '',
+		start: '',
+		finish: '',
 		description: ''
 	}
 
@@ -98,7 +98,7 @@ export const AddCourse = () => {
 						<span className="p-float-label">
 
 							<Controller
-								name="startDate"
+								name="start"
 
 								control={control}
 								rules={{ required: 'La fecha de inicio es requerida.' }}
@@ -111,7 +111,7 @@ export const AddCourse = () => {
 										locale='es'
 										value={startDateForm}
 										onChange={(e) => setStartDateForm(e.value)}
-										id={field.startDate}
+										id={field.start}
 										{...field}
 										autoFocus
 										className={classNames({ 'p-invalid': fieldState.invalid })}
@@ -122,18 +122,18 @@ export const AddCourse = () => {
 
 								)} />
 							<label
-								htmlFor="startDate"
-								className={classNames({ 'p-error': errors.startDate })}
+								htmlFor="start"
+								className={classNames({ 'p-error': errors.start })}
 							>Fecha de Inicio*</label>
 						</span>
-						{getFormErrorMessage('startDate')}
+						{getFormErrorMessage('start')}
 					</div>
 
 					<div className="field">
 						<span className="p-float-label">
 
 							<Controller
-								name="finishDate"
+								name="finish"
 
 								control={control}
 								rules={{ required: 'La fecha de finalización es requerida.' }}
@@ -146,7 +146,7 @@ export const AddCourse = () => {
 										locale='es'
 										value={finishDateForm}
 										onChange={(e) => setFinishDateForm(e.value)}
-										id={field.finishDate}
+										id={field.finish}
 										{...field}
 										autoFocus
 										className={classNames({ 'p-invalid': fieldState.invalid, 'p-button-info': true })}
@@ -160,11 +160,11 @@ export const AddCourse = () => {
 
 								)} />
 							<label
-								htmlFor="finishDate"
-								className={classNames({ 'p-error': errors.finishDate })}
+								htmlFor="finish"
+								className={classNames({ 'p-error': errors.finish })}
 							>Fecha de Finalización*</label>
 						</span>
-						{getFormErrorMessage('finishDate')}
+						{getFormErrorMessage('finish')}
 					</div>
 					<div className="field">
 						<span className="p-float-label">

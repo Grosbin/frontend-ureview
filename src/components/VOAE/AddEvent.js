@@ -8,17 +8,18 @@ export const AddEvent = ({ setDisplayMaximizable }) => {
 
 	console.log('Estoy en añadir curso pero la version 2');
 
-	const defaultValues = {
-		name: '',
-		ambit: '',
-		hoursVoae: 0,
-		quotas: 0,
-		startDate: '',
-		finishDate: '',
-		url: '',
-		description: ''
-	}
+	//TODO: Si da error al agragar un evento, agragar nos tipos de datos
 
+	// name: '',
+	// ambit: '',
+	// hours: 1,
+	// quotas: 1,
+	// start: '',
+	// finish: '',
+	// url: '',
+	// description: ''
+
+	const defaultValues = {}
 
 	return (
 

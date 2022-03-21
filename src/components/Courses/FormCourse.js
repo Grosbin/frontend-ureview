@@ -29,12 +29,7 @@ export const FormCourse = ({
 
 	const dispatch = useDispatch();
 
-	// const defaultValues = {
-	// 	name: '',
-	// 	startDate: '',
-	// 	finishDate: '',
-	// 	description: ''
-	// }
+
 
 	const { control, formState: { errors }, handleSubmit, reset } = useForm({ defaultValues });
 
@@ -53,7 +48,7 @@ export const FormCourse = ({
 			setDisplayMaximizable(false);
 		}
 		if (type === 'editCourse') {
-			console.log(data.name, data.startDate)
+			console.log(data.name, data.start)
 			dispatch(startEditCourse(data.id, data));
 			console.log('Curso Editado ' + data.name);
 			setDisplayMaximizable(false);
@@ -95,7 +90,11 @@ export const FormCourse = ({
 								name="name"
 
 								control={control}
-								rules={{ required: 'El nombre es requerido.' }}
+								rules={{
+									required: 'El nombre es requerido.',
+									minLength: { value: 3, message: 'El nombre debe tener al menos 3 caracteres.' },
+									maxLength: { value: 40, message: 'El nombre debe tener máximo 40 caracteres.' }
+								}}
 								render={({ field, fieldState }) => (
 									<InputText
 										id={field.name}
@@ -115,20 +114,20 @@ export const FormCourse = ({
 						<span className="p-float-label">
 
 							<Controller
-								name="startDate"
+								name="start"
 
 								control={control}
 								rules={{ required: 'La fecha de inicio es requerida.' }}
 								render={({ field, fieldState }) => (
 
 									<Calendar
-										ateFormat="dd/mm/yy"
+										dateFormat="dd/mm/yy"
 										showTime
 										hourFormat="12"
 										locale='es'
 										value={startDateForm}
 										onChange={(e) => setStartDateForm(e.value)}
-										id={field.startDate}
+										id={field.start}
 										{...field}
 										autoFocus
 										className={classNames({ 'p-invalid': fieldState.invalid })}
@@ -139,31 +138,31 @@ export const FormCourse = ({
 
 								)} />
 							<label
-								htmlFor="startDate"
-								className={classNames({ 'p-error': errors.startDate })}
+								htmlFor="start"
+								className={classNames({ 'p-error': errors.start })}
 							>Fecha de Inicio*</label>
 						</span>
-						{getFormErrorMessage('startDate')}
+						{getFormErrorMessage('start')}
 					</div>
 
 					<div className="field">
 						<span className="p-float-label">
 
 							<Controller
-								name="finishDate"
+								name="finish"
 
 								control={control}
 								rules={{ required: 'La fecha de finalización es requerida.' }}
 								render={({ field, fieldState }) => (
 
 									<Calendar
-										ateFormat="dd/mm/yy"
+										dateFormat="dd/mm/yy"
 										showTime
 										hourFormat="12"
 										locale='es'
 										value={finishDateForm}
 										onChange={(e) => setFinishDateForm(e.value)}
-										id={field.finishDate}
+										id={field.finish}
 										{...field}
 										autoFocus
 										className={classNames({ 'p-invalid': fieldState.invalid, 'p-button-info': true })}
@@ -177,11 +176,11 @@ export const FormCourse = ({
 
 								)} />
 							<label
-								htmlFor="finishDate"
-								className={classNames({ 'p-error': errors.finishDate })}
+								htmlFor="finish"
+								className={classNames({ 'p-error': errors.finish })}
 							>Fecha de Finalización*</label>
 						</span>
-						{getFormErrorMessage('finishDate')}
+						{getFormErrorMessage('finish')}
 					</div>
 					<div className="field">
 						<span className="p-float-label">
@@ -190,7 +189,10 @@ export const FormCourse = ({
 								name="description"
 
 								control={control}
-								rules={{ required: false }}
+								rules={{
+									required: false,
+									maxLength: { value: 500, message: 'La descripción debe tener máximo 500 caracteres.' }
+								}}
 								render={({ field }) => (
 
 									<InputTextarea
@@ -198,15 +200,16 @@ export const FormCourse = ({
 										{...field}
 										rows={5}
 										cols={30}
-										autoResize={true}
+										autoResize
 									/>
 								)} />
 							<label
 								htmlFor="description"
-
+								className={classNames({ 'p-error': errors.description })}
 							>Descripción</label>
 
 						</span>
+						{getFormErrorMessage('description')}
 					</div>
 
 					<MotionButton

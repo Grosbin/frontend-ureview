@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteEvent } from '../../actions/event';
+import { deleteEvent, startDeleteEvent, startGetEvent } from '../../actions/event';
 
 import { Badge } from 'primereact/badge';
 import { Rating } from 'primereact/rating';
@@ -27,7 +27,7 @@ export const ListEvent = ({
 	const dispatch = useDispatch();
 
 	const { events } = useSelector(state => state.events);
-	const { isStudent } = useSelector(state => state.auth);
+	const { isStudent, uid } = useSelector(state => state.auth);
 
 	// console.log(event);
 
@@ -41,13 +41,16 @@ export const ListEvent = ({
 	// 	// setQuotas(events.quotas);
 	// 	console.log(events);
 	// }, [quotas])
-
+	useEffect(() => {
+		dispatch(startGetEvent());
+	}, [dispatch]);
 
 
 
 	const handleDetete = (id) => {
 		console.log('Entro al delete ' + id);
-		dispatch(deleteEvent(id));
+		// dispatch(deleteEvent(id));
+		dispatch(startDeleteEvent(id));
 
 	}
 
@@ -141,7 +144,7 @@ export const ListEvent = ({
 
 	</>
 
-
+	const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
 
 	return (
 		// <div className='main'>
@@ -149,7 +152,7 @@ export const ListEvent = ({
 
 			{
 				//TODO: cambiar el h4 por un parrafo
-				events.map(index => (
+				events.slice(0).reverse().map(index => index.user?._id === uid && (
 					<motion.div
 						initial="hidden"
 						animate="visible"
@@ -157,10 +160,15 @@ export const ListEvent = ({
 						key={index.id}
 						className='card__container'
 					>
-						<Card footer={footer(index.id, displayMaximizable, index.quotas)} header={header} className='justify-content-center align-content-center' >
-							<h4>{index.name}</h4>
-							{index.description}
+						<Card title={index.name} footer={footer(index.id, displayMaximizable, index.quotas)} header={header} className='justify-content-center align-content-center' >
+							{/* <h4>{index.name}</h4> */}
+							{/* {index.description} */}
 							{/* {index.quotas} */}
+							<h5 className='-mb-3 -mt-3' >Inicio: {index.start.toLocaleDateString("es-ES", dateOptions)}</h5>
+							<h5 className='' >Finalización: {index.start.toLocaleDateString("es-ES", dateOptions)}</h5>
+							<p className='card__description m-0' style={{ lineHeight: '1.5' }}>
+								{index.description}
+							</p>
 						</Card>
 					</motion.div>)
 				)

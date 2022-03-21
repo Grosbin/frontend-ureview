@@ -1,11 +1,11 @@
 import { ListCourse } from "../Courses/ListCourse"
+import { PreviewCourse } from "../Courses/PreviewCourse"
 
 export const CourseScreenStudent = () => {
 
 
 	return (
-		<div className='main'>
-			<ListCourse />
-		</div>
+		<PreviewCourse />
+
 	)
 }

@@ -161,7 +161,7 @@ export const Navbar = () => {
 	}
 
 
-	const start = <img alt="logo" src="logo.png" onError={(e) => e.target.src = 'logo512.svg'} height="50" className="mr-2"></img>;
+	const start = <img alt="logo" src="logo.png" onError={(e) => e.target.src = 'logo.png'} height="50" className="mr-2"></img>;
 	const access = <SplitButton className='p-button-info' label="Acceso" icon="" onClick={handleLogin} model={itemsAccess}></SplitButton>
 	const user = <SplitButton label={nameItem} icon="pi pi-user" className={`${isStudent ? 'p-button-info' : 'p-button-warning'}`} model={itemsUser} />
 	// const user = <Avatar label={name.charAt(0)} className={`mr-2`} style={{ backgroundColor: '#2196F3', color: '#ffffff' }} size="large" shape="circle" />

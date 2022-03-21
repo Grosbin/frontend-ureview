@@ -10,6 +10,10 @@
 	width: 100%;
   }
 
+  .img__UNAH img{
+	width: 100%;
+  }
+
 .img__UNAH-login{
 	display: flex;
 	/* position: absolute; */
@@ -39,4 +43,18 @@
 	width: 90px;
 	border-radius: 50px;
 }
+
+@media screen and (max-width: 1280px) {
+	.img__UNAH {
+		/* padding-top: 15%; */
+	 	width: 75%;
+	}
+  }
+  
+  @media screen and (max-width: 720px) {
+	.img__UNAH {
+	  display: none;
+	}
+  }
+  
 

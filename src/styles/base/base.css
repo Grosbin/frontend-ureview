@@ -8,8 +8,6 @@
 }
 
 
-
-
 * {
   font-family: "Poppins", sans-serif;
 }
@@ -25,7 +23,8 @@ body {
 
 .is__professor{
   transition: background-color 0.5s ease-in-out;
-  background-color: var(--blue-600);
+  /* background-color: var(--blue-600); */
+  background-color: #0062ff;
 }
 
 
