@@ -13,12 +13,12 @@ export const variantsButton = {
 export const variantsCard = {
 	visible: {
 		scale: 1,
-		// opacity: 1,
-		transition: { type: 'spring', bounce: 0.1 },
+		opacity: 1,
+		transition: { type: 'spring', bounce: 0.1, duration: 1, delay: 0.2 },
 
 	},
 	hidden: {
-		// opacity: 0,
+		opacity: 0,
 		scale: 0,
 	},
 

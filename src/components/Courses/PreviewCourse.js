@@ -47,7 +47,7 @@ export const PreviewCourse = ({
 			whileTap="tap"
 			variants={variantsButton}
 
-			label="Inscribirse"
+			label="Cursar"
 			icon="pi pi-user-plus"
 			className="p-button-sm p-button-primary"
 			style={{ marginLeft: '.2rem' }}
