@@ -12,6 +12,9 @@ import { motion } from "framer-motion"
 import { variantsNavbar } from '../../helpers/framerValues';
 // import { SpeedDial } from 'primereact/speeddial';
 
+import { TabMenu } from 'primereact/tabmenu';
+
+
 
 export const Navbar = () => {
 
@@ -111,6 +114,12 @@ export const Navbar = () => {
 			command: () => {
 				navigate('estudiante/ver-eventos');
 			}
+		},
+		{
+			label: 'Mi Actividad',
+			command: () => {
+				navigate('estudiante/mi-actividad');
+			}
 		}
 	];
 
@@ -161,17 +170,18 @@ export const Navbar = () => {
 	}
 
 
-	const start = <img alt="logo" src="logo.png" onError={(e) => e.target.src = 'logo.png'} height="50" className="mr-2"></img>;
+	const start = <img onClick={() => navigate('/')} alt="logo" src="logo-ureview.png" onError={(e) => e.target.src = 'logo.png'} height="50" className="mr-2"></img>;
 	const access = <SplitButton className='p-button-info' label="Acceso" icon="" onClick={handleLogin} model={itemsAccess}></SplitButton>
-	const user = <SplitButton label={nameItem} icon="pi pi-user" className={`${isStudent ? 'p-button-info' : 'p-button-warning'}`} model={itemsUser} />
+	const user = <SplitButton label={nameItem} icon="pi pi-user" className={`${isStudent ? 'p-button-warning' : 'p-button-info'}`} model={itemsUser} />
 	// const user = <Avatar label={name.charAt(0)} className={`mr-2`} style={{ backgroundColor: '#2196F3', color: '#ffffff' }} size="large" shape="circle" />
 	return (
 		<motion.div
 			initial="hidden"
 			animate="visible"
 			variants={variantsNavbar}
-			className={`header ${isAuthenticated ? (isStudent ? 'header-student' : 'header-professor') : 'header-normal'}`}>
-			<Menubar model={isAuthenticated ? (isStudent ? items.concat(itemsStudent) : items.concat(itemsProfessor)) : items} start={start} end={isAuthenticated ? user : access} />
+			// className={`header ${isAuthenticated ? (isStudent ? 'header-student' : 'header-professor') : 'header-normal'}`}>
+			className={`header header-normal`}>
+			<Menubar className=' font-bold' model={isAuthenticated ? (isStudent ? items.concat(itemsStudent) : items.concat(itemsProfessor)) : items} start={start} end={isAuthenticated ? user : access} />
 		</motion.div>
 	);
 }

@@ -1,5 +1,5 @@
 
-import { ListEvent } from "../VOAE/ListEvent"
+import { ListEvent } from "../../components/VOAE/ListEvent"
 
 export const EventScreenStudent = () => {
 

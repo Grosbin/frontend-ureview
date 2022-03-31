@@ -5,15 +5,15 @@ import { motion } from "framer-motion"
 export const About = () => {
 
 	const variantsImg = {
-		visible: { opacity: 1, scale: 1, transition: { type: 'spring', delay: 0.2 } },
-		hidden: { opacity: 0, scale: 0 },
+		visible: { opacity: 1, transition: { duration: 1 } },
+		hidden: { opacity: 0 },
 
 	}
 
 	const variantsCard = {
 		hover: {
-			scale: 1.2,
-			transition: { duration: 0.3 },
+			scale: 1.25,
+			transition: { duration: 0.2 },
 		},
 		tap: {
 			scale: 0.9
@@ -53,12 +53,12 @@ export const About = () => {
 						initial="hidden"
 						animate="visible"
 						variants={variantsTilte1}
-						className="text-yellow-400">UNAH </motion.span>
+						className="text-yellow-400 text-4xl">UNAH </motion.span>
 					<motion.span
 						initial="hidden"
 						animate="visible"
 						variants={variantsTilte1}
-						className="text-blue-400">Review</motion.span><br />
+						className="text-blue-400 text-4xl">Review</motion.span><br />
 					<motion.span
 						initial="hidden"
 						animate="visible"

@@ -13,8 +13,7 @@ import { LoginScreen } from "../components/auth/LoginScreen";
 import { ProfessorRoute } from "./ProfessorRoute";
 import { useEffect } from "react";
 import { startChecking } from "../actions/auth";
-import { startLoadingCourse } from "../actions/course";
-import { background } from "../helpers/backgroudState";
+
 
 
 

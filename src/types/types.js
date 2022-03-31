@@ -30,6 +30,9 @@ export const types = {
 	getEvent: 'Get Event',
 	loadEvent: 'Load Event',
 
+	//Actividad
+	addActivity: 'Add Activity',
+	dataActivity: 'Data Activity',
 
 
 

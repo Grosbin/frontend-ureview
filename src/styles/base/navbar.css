@@ -6,6 +6,11 @@
   z-index: 1;
 }
 
+.p-menubar{
+  color: var(--blue-500);
+  border-style: none;
+}
+
 .header-normal .p-menubar{
   transition: background-color 0.5s ease;
   background-color: white;
@@ -15,18 +20,27 @@
 .header-normal .p-menubar .pi-bars{
   color: var(--blue-700);
 }
-.header-student .p-menubar{
-  transition: background-color 0.5s ease;
-  background-color: var(--yellow-400);
-  /* color: white; */
+/* .header-student .p-menubar{ */
+  /* transition: background-color 0.5s ease; */
+  /* background-color: var(--yellow-400); */
+  /* color: var(--yellow-700); */
+
+
+.header-student > .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-menuitem-text {
+  color: var(--yellow-400);
 }
 
-.header-professor .p-menubar{
+
+/* .header-professor .p-menubar{
   transition: background-color 0.5s ease;
-  background-color: #0062ff;
+  /* background-color: #0062ff; */
   /* background-color: #1512b1; */
   /* color: white; */
   
+  .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link {
+
+    color: #136ac0;
+
 }
 
 .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link {
@@ -39,21 +53,40 @@
 }
 
 .header-normal .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-menuitem-text{
-  color: var(--blue-800);
+  color: #0080ff;
+}
+
+.p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover{
+  background-color: #EFF6FF;
+}
+
+.p-menu .p-menuitem-link:not(.p-disabled):hover {
+	background: #EFF6FF;
 }
 
 
-.p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-menuitem-text{
+/* .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-menuitem-text{
   color: white; 
-} 
+}  */
 
-.p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-menuitem-text:hover{
+/* .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-menuitem-text:hover{
   color: var(--blue-800);
-}
+} */
+
+
 
 .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-submenu-icon{
-  color: white;
+  color: #0080ff;
 }
+
+.p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text {
+  color: var(--yellow-400);
+}
+
+.p-menubar .p-menuitem-link .p-menuitem-text {
+  color: var(--yellow-400);
+}
+
 
 @media screen and (max-width: 960px) {
 

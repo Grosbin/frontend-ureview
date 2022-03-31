@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 // import { AddCourse } from '../Courses/AddCourse'
-import { ListCourse } from '../Courses/ListCourse'
-import { Modal } from '../ui/Modal'
-import { ToolBar } from '../ui/ToolBar'
+import { ListCourse } from '../../Courses/ListCourse';
+import { Modal } from '../../ui/Modal';
+import { ToolBar } from '../../ui/ToolBar';
 
 
 export const CourseScreenProfessor = () => {

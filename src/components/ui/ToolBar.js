@@ -48,13 +48,13 @@ export const ToolBar = ({
 				<Button icon="pi pi-calendar" className="p-button-success mr-2" />
 			</motion.div>
 
-			<motion.div
+			{/* <motion.div
 				whileHover="hover"
 				whileTap="tap"
 				variants={variantsButton}
 			>
 				<Button icon="pi pi-times" className="p-button-danger" />
-			</motion.div>
+			</motion.div> */}
 
 		</>
 	);

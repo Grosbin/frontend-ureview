@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { Modal } from '../ui/Modal'
-import { ToolBar } from '../ui/ToolBar'
-import { ListEvent } from '../VOAE/ListEvent'
+import { Modal } from '../../ui/Modal'
+import { ToolBar } from '../../ui/ToolBar'
+import { ListEvent } from '../../VOAE/ListEvent'
 
 
 
