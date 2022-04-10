@@ -14,6 +14,12 @@
 body {
   /* background-color: #ebf0f4; */
   background-color: #eff3f8;
+  /* background-color: #f5f9ff; */
+}
+
+li{
+  list-style: none;
+  margin-bottom: 10px;
 }
 
 .is__student{

@@ -58,7 +58,7 @@ export const Start = () => {
 					/>
 
 					<motion.div
-						whileHover="hover"
+						// whileHover="hover"
 						whileTap="tap"
 						animate="visible"
 						variants={variantsButton}

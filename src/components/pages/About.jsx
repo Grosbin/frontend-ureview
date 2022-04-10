@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 export const About = () => {
 
 	const variantsImg = {
-		visible: { opacity: 1, transition: { duration: 1 } },
+		visible: { opacity: 1, transition: { duration: 1, delay: 0.5 } },
 		hidden: { opacity: 0 },
 
 	}
@@ -29,7 +29,7 @@ export const About = () => {
 	}
 	const variantsTilte2 = {
 		visible: {
-			opacity: 1, transition: { duration: 1, delay: 1.3 }
+			opacity: 1, transition: { duration: 1, delay: 2.8 }
 		},
 		hidden: {
 			opacity: 0,
@@ -37,7 +37,7 @@ export const About = () => {
 	}
 	const variantsTilte3 = {
 		visible: {
-			opacity: 1, transition: { duration: 1, delay: 3 }
+			opacity: 1, transition: { duration: 1, delay: 4.1 }
 		},
 		hidden: {
 			opacity: 0,

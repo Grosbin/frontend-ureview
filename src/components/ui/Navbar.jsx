@@ -53,6 +53,15 @@ export const Navbar = () => {
 				// setActiveItem(false);
 			}
 		},
+		// {
+		// 	label: 'Acitividad',
+		// 	command: () => {
+		// 		navigate('/evento-informacion');
+		// 		// background();
+		// 		dispatch(message('', false));
+		// 		// setActiveItem(false);
+		// 	}
+		// },
 	];
 
 	const itemsAccess = [

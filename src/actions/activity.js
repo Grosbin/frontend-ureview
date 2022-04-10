@@ -27,16 +27,19 @@ const addNewActivity = (id, type, activity, userActivity) => {
 }
 
 
-export const startDataActivity = (activity) => {
+export const startDataActivity = (activity, enroll) => {
 	return async (dispatch) => {
-		dispatch(dataActivity(activity));
+		dispatch(dataActivity(activity, enroll));
 	}
 }
 
 
-const dataActivity = (activity) => {
+const dataActivity = (activity, enroll) => {
 	return {
 		type: types.dataActivity,
-		payload: activity
+		payload: {
+			activity,
+			enroll
+		}
 	}
 }

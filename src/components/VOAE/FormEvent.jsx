@@ -28,25 +28,15 @@ export const FormEvent = ({
 
 }) => {
 
-
 	const MotionButton = motion(Button);
-
-
 	const dispatch = useDispatch();
-
-
-
 	const { control, formState: { errors }, handleSubmit, reset } = useForm({ defaultValues });
-
-
 	const [startDateForm, setStartDateForm] = useState(null);
 	const [finishDateForm, setFinishDateForm] = useState(null);
 	// const [selectedAmbit, setSelectedAmbit] = useState(null);
 	// const [hoursAssign, setHoursAssign] = useState(null);
 	// const [numberQuotas, setNumberQuotas] = useState(null);
-
 	const [selectAmbit, setSelectAmbit] = useState([]);
-
 	// console.log(selectedAmbit.ambit);
 
 	const fieldAmbit = [
@@ -60,9 +50,6 @@ export const FormEvent = ({
 	useEffect(() => {
 		setSelectAmbit(fieldAmbit);
 	}, [])
-
-
-
 
 	const onSubmit = (data) => {
 

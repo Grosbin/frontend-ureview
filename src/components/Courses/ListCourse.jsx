@@ -147,9 +147,17 @@ export const ListCourse = ({
 
 							<h5 className='-mb-3' >Inicio: {index.start.toLocaleDateString("es-ES", dateOptions)}</h5>
 							<h5 className='' >Finalización: {index.start.toLocaleDateString("es-ES", dateOptions)}</h5>
-							<p className='card__description m-0' style={{ lineHeight: '1.5' }}>
-								{index.description}
-							</p>
+
+							{
+								index.description
+									?
+									<p className='card__description m-0' style={{ lineHeight: '1.5' }}>
+										{index.description.length > 30 ? `${index.description.substring(0, 30)}...` : index.description}
+									</p>
+									:
+									<p className='card__description m-0 text-yellow-500' style={{ lineHeight: '1.5' }}>Este Curso no tiene descripción</p>
+							}
+
 						</Card>
 					</motion.div>)
 				)
