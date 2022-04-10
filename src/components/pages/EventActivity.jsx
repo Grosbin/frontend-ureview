@@ -15,9 +15,10 @@ import { assets } from '../../helpers/assets';
 
 import { Calendar } from 'primereact/calendar';
 import { addLocale } from 'primereact/api';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import  moment from 'moment';
+import { startAddNewComment } from '../../actions/comment';
 
 
 
@@ -26,11 +27,27 @@ import  moment from 'moment';
 export const EventActivity = () => {
 
 	const { active } = useSelector(state => state.activities);
+	const { comments} = useSelector(state => state.comments);
+	const { name, uid } = useSelector(state => state.auth);
+
+	const dispatch = useDispatch();
 
 	const {activity: eventActive } = active;
 
-	const [value2, setValue2] = useState('');
+	const [contentComment, setContentComment] = useState('');
+	const [countKey, setCountKey] = useState(1);
+	// console.log(contentComment);
+	// const [value3, setValue3] = useState(12);
 
+	const handleComment = () => {
+		// console.log('El usuraio hizo un comentario');
+		// console.log(contentComment);
+		// console.log(typeof contentComment);
+		
+		
+		setCountKey(countKey + 1);
+		dispatch(startAddNewComment(contentComment));
+	}
 
 	addLocale('es', {
 		firstDayOfWeek: 1,
@@ -100,8 +117,8 @@ export const EventActivity = () => {
 					<div>
 						<div className="flex justify-content-between mb-3">
 							<div className='surface-0 shadow-2 p-3 border-round' style={{ width: '100%' }} >
-								<Button label="Comentar" icon="pi pi-comments" iconPos="right" className='p-button p-button-primary mb-2' />
-								<InputTextarea placeholder='Escribe un comentario' className='p-3 surface-100' value={value2} onChange={(e) => setValue2(e.target.value)} rows={5} autoResize style={{ width: '100%' }} />
+								<Button label="Comentar" icon="pi pi-comments" iconPos="right" className='p-button p-button-primary mb-2' onClick={handleComment} />
+								<InputTextarea placeholder='Escribe un comentario' className='p-3 surface-100' value={contentComment} onChange={(e) => setContentComment(e.target.value)} rows={5} autoResize style={{ width: '100%' }} />
 							</div>
 
 						</div>
@@ -136,10 +153,9 @@ export const EventActivity = () => {
 					</div>
 				</div> */}
 				<div className="col-12">
-					<CommentItems />
-					<CommentItems />
-					<CommentItems />
-					<CommentItems />
+					{
+						comments.map(index => index.user?._id === uid &&  <CommentItems key={index.id} user={index.user.name} comment={index.comment} date={index.date}/>)
+					}
 				</div>
 			</div>
 		</div>

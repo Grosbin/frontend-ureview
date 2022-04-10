@@ -34,6 +34,9 @@ export const types = {
 	addActivity: 'Add Activity',
 	dataActivity: 'Data Activity',
 
+	//Comentario
+	addComment: 'Add Comment',
+
 
 
 

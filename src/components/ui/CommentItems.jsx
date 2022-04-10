@@ -1,7 +1,12 @@
 import React from 'react'
 import { Avatar } from 'primereact/avatar';
+import moment from 'moment';
 
-export const CommentItems = ({ user, time, comment }) => {
+export const CommentItems = ({ user, comment, date }) => {
+
+	// moment.locale('es');
+	const timeFormat = moment(date).locale('es-mx').format('MMMM Do YYYY, h:mm:ss a');
+	
 	return (
 		<li>
 			<div className="comment-main-level">
@@ -9,17 +14,16 @@ export const CommentItems = ({ user, time, comment }) => {
 					<div className="comment-head bg-blue-50">
 						<span className=' text-600 mr-2'>
 							<Avatar label="U" shape="circle" className='mr-2 bg-blue-300' />
-							usuario
+							{user}
 						</span>
 						{/* <p>hace 20 minutos</p> */}
-						<span className=' text-yellow-500'>hace 20 minutos</span>
+						<span className=' text-yellow-500'>{timeFormat}</span>
 
 					</div>
 					<div className="comment-content p-5">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+						{
+							comment
+						}
 					</div>
 				</div>
 			</div>
