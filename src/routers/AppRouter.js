@@ -14,6 +14,7 @@ import { ProfessorRoute } from "./ProfessorRoute";
 import { useEffect } from "react";
 import { startChecking } from "../actions/auth";
 import { EventActivity } from "../components/pages/EventActivity";
+import { Statistics } from "../components/pages/professor/Statistics";
 
 
 
@@ -46,9 +47,9 @@ export const AppRouter = () => {
 				<Route path="acerca" element={
 					<About />
 				} />
-				{/* <Route path="evento-informacion" element={
-					<EventActivity />
-				} /> */}
+				<Route path="estadisticas" element={
+					<Statistics />
+				} />
 				<Route path="sesion" element={
 					<PublicRoute isAuthenticated={isAuthenticated} isStudent={isStudent}>
 						<LoginScreen />

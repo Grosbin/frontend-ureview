@@ -18,9 +18,11 @@ export const Activity = () => {
 	const navigate = useNavigate();
 
 	const { activities } = useSelector(state => state.activities);
+	const { uid } = useSelector(state => state.auth);
 
-	const course = activities.filter(activity => activity.type === 'course') || [];
-	const events = activities.filter(activity => activity.type === 'events') || [];
+
+	const course = activities.filter(activity => activity.type === 'course' && activity.userActivity._id === uid) || [];
+	const events = activities.filter(activity => activity.type === 'events' && activity.userActivity._id === uid) || [];
 	console.log(course);
 	console.log(events);
 

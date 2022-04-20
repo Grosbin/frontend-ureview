@@ -59,11 +59,17 @@ export const PreviewEvent = ({
 		});
 	}
 
+	const handleMoreInfo = (index) => {
+	console.log('Entro a ver más info');
+	}
+
 	const registerCourse = (index) => <motion.span
 		whileHover="hover"
 		whileTap="tap"
 		variants={variantsButton}
 	>
+		{
+			isStudent &&
 		<MotionButton
 			whileHover="hover"
 			whileTap="tap"
@@ -72,7 +78,18 @@ export const PreviewEvent = ({
 			label="Inscribirse"
 			icon="pi pi-user-plus"
 			className="p-button-sm p-button-success"
-			style={{ marginLeft: '.2rem' }}
+			style={{ marginLeft: '.2rem', marginRight: '2.5rem' }}
+		/>
+		}
+		<MotionButton
+			whileHover="hover"
+			whileTap="tap"
+			variants={variantsButton}
+			onClick={handleMoreInfo}
+			label="ver más"
+			// icon="pi pi-user-plus"
+			className="p-button-sm p-button-primary"
+			// style={{ marginLeft: '1.5rem' }}
 		/>
 	</motion.span>
 
@@ -84,7 +101,7 @@ export const PreviewEvent = ({
 
 	const footer = (index) => <>
 		{
-			isStudent && registerCourse(index)
+			registerCourse(index)
 		}
 
 	</>
@@ -109,8 +126,8 @@ export const PreviewEvent = ({
 						>
 							<Card subTitle={`Organizador: ${index.user?.name}`} footer={footer(index)} header={header(index.name, index.ambit.ambit)} className='justify-content-center align-content-center cursor-pointer' >
 								{/* <h4 className='-mb-3 -mt-4'>Organizador: {index.user?.name}</h4> */}
-								<h5 className='-mb-3 -mt-4' >Inicio: {index.start.toLocaleDateString("es-ES", dateOptions)}</h5>
-								<h5 className='' >Finalización: {index.finish.toLocaleDateString("es-ES", dateOptions)}</h5>
+								<h5 className='-mt-4' >Inicio: {index.start.toLocaleDateString("es-ES", dateOptions)}</h5>
+								{/* <h5 className='' >Finalización: {index.finish.toLocaleDateString("es-ES", dateOptions)}</h5> */}
 								{
 									index.description
 										?

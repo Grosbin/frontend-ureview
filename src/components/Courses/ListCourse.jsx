@@ -157,7 +157,6 @@ export const ListCourse = ({
 									:
 									<p className='card__description m-0 text-yellow-500' style={{ lineHeight: '1.5' }}>Este Curso no tiene descripción</p>
 							}
-
 						</Card>
 					</motion.div>)
 				)

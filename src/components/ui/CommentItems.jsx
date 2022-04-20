@@ -1,11 +1,13 @@
 import React from 'react'
 import { Avatar } from 'primereact/avatar';
 import moment from 'moment';
+import 'moment/locale/es';
+moment.locale('es-hn');
 
 export const CommentItems = ({ user, comment, date }) => {
 
-	// moment.locale('es');
-	const timeFormat = moment(date).locale('es-mx').format('MMMM Do YYYY, h:mm:ss a');
+	const timeFormat = moment(date).format('MMM D YYYY, h:mm:ss a');
+	// const timeFormat = moment().startOf(date).fromNow();
 	
 	return (
 		<li>
