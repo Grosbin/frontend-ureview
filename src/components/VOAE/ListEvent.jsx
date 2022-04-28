@@ -15,7 +15,7 @@ import { motion } from "framer-motion";
 import { variantsCard, variantsButton } from "../../helpers/framerValues";
 import { useNavigate } from "react-router-dom";
 import { startDataActivity } from "../../actions/activity";
-
+import { confirmDialog } from "primereact/confirmdialog";
 // import { Tooltip } from 'primereact/tooltip';
 
 // import { deleteCourse, startEditCourse } from '../../actions/course';
@@ -85,6 +85,27 @@ export const ListEvent = ({
     console.log("Entro a estadisticas");
     navigate("/estadisticas");
   };
+  const confirm = () => {
+    confirmDialog({
+      message: "Are you sure you want to proceed?",
+      header: "Confirmation",
+      icon: "pi pi-exclamation-triangle",
+      accept: () => {
+        console.log("accept");
+      },
+      reject: () => {
+        console.log("reject");
+      },
+    });
+  };
+
+  const handleAttendance = (activity) => {
+    console.log("Entro a asistencia");
+    console.log(activity);
+    dispatch(startDataActivity(activity, false));
+    navigate("codigo-asistencia");
+    // confirm();
+  };
 
   const header = (index) => (
     <span>
@@ -113,6 +134,19 @@ export const ListEvent = ({
         }}
         // style={{ marginLeft: '.1rem' }}
         onClick={() => handleMoreInfo(index)}
+      />
+      <Button
+        icon="pi pi-list"
+        className="p-button-sm p-button-warning p-button-text mt-2"
+        tooltip="Asistencia"
+        tooltipOptions={{
+          showDelay: 100,
+          hideDelay: 200,
+          className: "yellow-tooltip",
+          position: "top",
+        }}
+        // style={{ marginLeft: '.1rem' }}
+        onClick={() => handleAttendance(index)}
       />
     </span>
   );

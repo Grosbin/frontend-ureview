@@ -75,7 +75,11 @@ export const Start = () => {
               <img
                 src={assets(`./UNAH-letras-03.png`)}
                 alt=""
-                style={{ width: "100%", borderRadius: "7px" }}
+                style={{
+                  width: "100%",
+                  borderRadius: "7px",
+                  marginTop: "1.5rem",
+                }}
               />
             </div>
           </div>
