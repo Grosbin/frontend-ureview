@@ -14,6 +14,7 @@ import { motion } from "framer-motion";
 // import { background, backgroundProfessor } from '../../helpers/backgroudState';
 import { Toast } from 'primereact/toast';
 
+
 export const RegisterScreen = () => {
 
 	const toast = useRef(null);
@@ -50,7 +51,8 @@ export const RegisterScreen = () => {
 		name: '',
 		email: '',
 		password: '',
-		password2: ''
+		password2: '',
+		num_account: ''
 	}
 
 	const displayError = () => {
@@ -79,7 +81,7 @@ export const RegisterScreen = () => {
 			setValidPassword(true);
 			reset();
 			// background();
-			dispatch(startRegisterStudent(data.name, data.email, data.password));
+			dispatch(startRegisterStudent(data.name, data.email, data.password, data.num_account));
 		} else if (!isStudent) {
 
 			console.log('Dispatch de profesor')
@@ -158,6 +160,27 @@ export const RegisterScreen = () => {
 										</span>
 										{getFormErrorMessage('name')}
 									</div>
+
+									{isStudent &&
+										<div className="field">
+											<span className="p-float-label">
+												<Controller
+													name="num_account"
+													control={control}
+													rules={{
+														required: 'El número de cuenta es requerido.',
+														pattern: {
+															value: /^[0-9]{11,11}$/,
+															message: 'Numero de cuenta no valido no valido.'
+														}
+
+													}} render={({ field, fieldState }) => (
+														<InputText id={field.name} {...field} autoFocus className={classNames({ 'p-invalid': fieldState.invalid })} />
+													)} />
+												<label htmlFor="num_account" className={classNames({ 'p-error': errors.num_account })}>Número de Cuenta*</label>
+											</span>
+											{getFormErrorMessage('num_account')}
+										</div>}
 									<div className="field">
 										<span className="p-float-label p-input-icon-right">
 											<i className="pi pi-envelope" />

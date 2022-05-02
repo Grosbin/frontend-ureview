@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Card } from "primereact/card";
 import { Button } from "primereact/button";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,7 +30,8 @@ export const PreviewEvent = ({
   const navigate = useNavigate();
 
   const { events } = useSelector((state) => state.events);
-  const { isStudent, uid } = useSelector((state) => state.auth);
+  const { isStudent } = useSelector((state) => state.auth);
+  const { activities } = useSelector((state) => state.activities);
 
   // console.log(course);
   const toast = useRef(null);
@@ -53,16 +54,22 @@ export const PreviewEvent = ({
   const confirm = (e, index) => {
     // console.log(index);
     // console.log(e);
-    confirmPopup({
-      target: e.currentTarget,
-      message: `Desea inscribirse en ${index.name}?`,
-      icon: "pi pi-exclamation-triangle text-yellow-500",
-      acceptClassName: "p-button-primary",
-      acceptLabel: "Aceptar",
-      rejectClassName: "p-button-danger p-button-text",
-      accept: () => handleTakeEvents(index),
-      // reject: () => reject(index)
-    });
+    // console.log(activities.includes(index.id));
+
+    const idActive = activities.find((item) => item.id === index.id);
+
+    if (!idActive) {
+      confirmPopup({
+        target: e.currentTarget,
+        message: `Desea inscribirse en ${index.name}?`,
+        icon: "pi pi-exclamation-triangle text-yellow-500",
+        acceptClassName: "p-button-primary",
+        acceptLabel: "Aceptar",
+        rejectClassName: "p-button-danger p-button-text",
+        accept: () => handleTakeEvents(index),
+        // reject: () => reject(index)
+      });
+    }
   };
 
   const handleMoreInfo = (index) => {
@@ -72,7 +79,7 @@ export const PreviewEvent = ({
     navigate("evento-informacion");
   };
 
-  const registerCourse = (index) => (
+  const registerEvent = (index) => (
     <motion.span whileHover="hover" whileTap="tap" variants={variantsButton}>
       {isStudent && (
         <MotionButton
@@ -110,7 +117,7 @@ export const PreviewEvent = ({
     </div>
   );
 
-  const footer = (index) => <>{registerCourse(index)}</>;
+  const footer = (index) => <>{registerEvent(index)}</>;
 
   const dateOptions = { year: "numeric", month: "long", day: "numeric" };
 

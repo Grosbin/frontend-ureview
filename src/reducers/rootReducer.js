@@ -4,7 +4,7 @@ import { courseReducer } from "./courseReducer";
 import { eventReducer } from "./eventReducer";
 import { activityReducer } from "./activityReducer";
 import { commentReducer } from "./commentReducer";
-import { toitionReducer } from "./tuitionReducer";
+import { statisticsReducer } from "./statisticsReducer";
 
 
 
@@ -15,5 +15,5 @@ export const rootReducer = combineReducers({
 	events: eventReducer,
 	activities: activityReducer,
 	comments: commentReducer,
-	toitions: toitionReducer,
+	statistics: statisticsReducer
 })

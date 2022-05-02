@@ -6,14 +6,16 @@ import { InputText } from "primereact/inputtext";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { ProgressBar } from "primereact/progressbar";
 import { Toast } from "primereact/toast";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { sumHoursVoaeAction } from "../../../actions/statistics";
+import { useNavigate } from "react-router-dom";
 
 export const Attendance = () => {
   //   console.log("Entro al CodeAttendance");
 
-  const [generateCode, setGenerateCode] = useState(true);
-  const [progressBar, setProgressBar] = useState(false);
-  const [generateCopy, setGenerateCopy] = useState(false);
+  const [inCode, setInCode] = useState(true);
+  const [buttonMyActivity, setButtonMyActivity] = useState(false);
+  const [inCopy, setInCopy] = useState(false);
   const [contentComment, setContentComment] = useState("");
   const { active } = useSelector((state) => state.activities);
 
@@ -22,10 +24,17 @@ export const Attendance = () => {
   const toast = useRef(null);
   const interval = useRef(null);
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const copyClipBoard = () => {
-    setGenerateCode(false);
+    setInCode(false);
     // setProgressBar(true);
-    setGenerateCopy(true);
+    setInCopy(true);
+  };
+
+  const handleMyActivity = () => {
+    navigate("/estudiante/mi-actividad");
   };
 
   const handleAttendance = () => {
@@ -36,6 +45,9 @@ export const Attendance = () => {
         detail: "Asistencia registrada correctamente",
       });
       setCopy(true);
+      console.log(active.activity.hours);
+      dispatch(sumHoursVoaeAction(active.activity.hours));
+      setButtonMyActivity(true);
     }
     if (contentComment !== active.activity.id) {
       toast.current.show({
@@ -95,7 +107,7 @@ export const Attendance = () => {
         ></ProgressBar>
       )} */}
       <div className="grid mb-8">
-        {generateCode && (
+        {inCode && (
           <div className="col:12 md:col-12 lg:col-12" style={{ width: "100%" }}>
             <Button
               label="Ingresar Código"
@@ -107,7 +119,19 @@ export const Attendance = () => {
             />
           </div>
         )}
-        {generateCopy && (
+        {buttonMyActivity && (
+          <div className="col:12 md:col-12 lg:col-12" style={{ width: "100%" }}>
+            <Button
+              label="Ir a mi actividad"
+              className="p-button-success"
+              style={{ width: "100%" }}
+              onClick={() => {
+                handleMyActivity();
+              }}
+            />
+          </div>
+        )}
+        {inCopy && !buttonMyActivity && (
           <div
             className="col:12 md:col-12 lg:col-12 mt-1"
             style={{ width: "100%" }}

@@ -21,11 +21,12 @@ import moment from "moment";
 import { startAddNewComment } from "../../actions/comment";
 import { startAddNewActivity, startDataActivity } from "../../actions/activity";
 import { useNavigate } from "react-router-dom";
+import { sumCommentsAction } from "../../actions/statistics";
 
 export const EventActivity = () => {
   const { active } = useSelector((state) => state.activities);
   const { comments } = useSelector((state) => state.comments);
-  const { name, uid } = useSelector((state) => state.auth);
+  const { isStudent } = useSelector((state) => state.auth);
 
   const navigate = useNavigate();
 
@@ -36,16 +37,19 @@ export const EventActivity = () => {
 
   const [contentComment, setContentComment] = useState("");
   const [countKey, setCountKey] = useState(1);
-  // console.log(contentComment);
+  console.log(eventActive.url);
   // const [value3, setValue3] = useState(12);
 
   const handleComment = () => {
-    // console.log('El usuraio hizo un comentario');
-    // console.log(contentComment);
-    // console.log(typeof contentComment);
-
     setCountKey(countKey + 1);
-    if (contentComment && contentComment.length < 500) {
+    if (
+      contentComment &&
+      contentComment.length < 500 &&
+      contentComment.length > 5
+    ) {
+      if (isStudent) {
+        dispatch(sumCommentsAction(1));
+      }
       dispatch(startAddNewComment(contentComment));
     }
     if (contentComment.length > 500) {
@@ -114,7 +118,7 @@ export const EventActivity = () => {
       <div className="grid">
         <div className="col-12 md:col-12 lg:col-12">
           <div className="bg-blue-500 shadow-1 p-3 border-round bg-img-activity">
-            {active.enroll && (
+            {active.enroll && isStudent && (
               <Button
                 label="Inscribirse"
                 icon="pi pi-user-plus"
@@ -123,7 +127,7 @@ export const EventActivity = () => {
                 onClick={() => handleActivity(eventActive)}
               />
             )}
-            {!active.enroll && (
+            {!active.enroll && isStudent && (
               <Button
                 label="Asistencia"
                 icon="pi pi-pencil"
@@ -138,6 +142,8 @@ export const EventActivity = () => {
                 icon="pi pi-link"
                 iconPos="left"
                 className="p-button p-button-warning mb-2"
+                // target="_blank"
+                // href={`https://${eventActive.url}`}
               />
             )}
             <p className="text-0 font-bold text-5xl text-center m-0">
@@ -148,6 +154,9 @@ export const EventActivity = () => {
                 {/* <span className="block text-0 font-medium mb-3">Detalle</span> */}
                 {eventActive.description && (
                   <Fieldset legend="Descripción" toggleable>
+                    {/* <a href={`https://${eventActive.url}`} target="_black">
+                      Abrir url
+                    </a> */}
                     <p>{eventActive.description}</p>
                   </Fieldset>
                 )}

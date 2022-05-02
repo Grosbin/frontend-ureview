@@ -83,9 +83,9 @@ export const startLogout = () => {
 	}
 }
 
-export const startRegisterStudent = (name, email, password) => {
+export const startRegisterStudent = (name, email, password, num_account) => {
 	return async (dispatch) => {
-		const resp = await fetchSinToken('estudiante/registro-estudiante', { name, email, password }, 'POST');
+		const resp = await fetchSinToken('estudiante/registro-estudiante', { name, email, password, num_account }, 'POST');
 		const body = await resp.json();
 		dispatch(message('', false));
 

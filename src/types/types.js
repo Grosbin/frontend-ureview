@@ -37,8 +37,9 @@ export const types = {
 	//Comentario
 	addComment: 'Add Comment',
 
-	//Matriculas
-	addTuition: 'Add Tuition',
+	//Estadisticas
+	sumComments: 'Sum Comments',
+	sumHoursVoae: 'Sum Hours Voae',
 
 
 

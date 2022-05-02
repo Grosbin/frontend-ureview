@@ -15,6 +15,7 @@ export const Activity = () => {
   const navigate = useNavigate();
 
   const { activities } = useSelector((state) => state.activities);
+  const { hourVoae, comments } = useSelector((state) => state.statistics);
   const { uid } = useSelector((state) => state.auth);
 
   const course =
@@ -39,9 +40,9 @@ export const Activity = () => {
     console.log(activity.name);
     if (activity.type === "events") {
       navigate("evento-informacion");
-    } else {
-      //navigate('curso-informacion');
-      console.log("Aun no se implementa");
+    }
+    if (activity.type === "course") {
+      navigate("curso-informacion");
     }
   };
 
@@ -59,7 +60,7 @@ export const Activity = () => {
                     `${
                       activity.type === "course"
                         ? "./banner-01.png"
-                        : `./${activity.ambit.ambit}.png`
+                        : `./${activity.ambit?.ambit}.png`
                     }`
                   )}
                 />
@@ -141,13 +142,13 @@ export const Activity = () => {
 
         <ActivityCard
           title={"Total horas  Art.140"}
-          count={0}
+          count={hourVoae}
           icon={"pi-clock text-cyan-500"}
         />
 
         <ActivityCard
           title={"Comentarios"}
-          count={0}
+          count={comments}
           icon={"pi-comment text-purple-500"}
         />
       </div>

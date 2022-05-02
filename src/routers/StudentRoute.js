@@ -9,6 +9,7 @@ import { PreviewEvent } from "../components/VOAE/PreviewEvent";
 import { Activity } from "../components/pages/student/Activity";
 import { EventActivity } from "../components/pages/EventActivity";
 import { Attendance } from "../components/pages/student/Attendance";
+import { CourseActivity } from "../components/pages/CourseActivity";
 // import { Navbar } from "../components/ui/Navbar";
 
 export const StudentRoute = () => {
@@ -21,6 +22,8 @@ export const StudentRoute = () => {
 				{/* <Route path="privado2" element={<PruebaPrivada2 />} /> */}
 				<Route path="mi-actividad/evento-informacion" element={<EventActivity />} />
 				<Route path="ver-eventos/evento-informacion" element={<EventActivity />} />
+				<Route path="mi-actividad/curso-informacion" element={<CourseActivity />} />
+				<Route path="ver-cursos/curso-informacion" element={<CourseActivity />} />
 				<Route path="mi-actividad/evento-informacion/asistencia" element={<Attendance />} />
 				<Route path="*" element={<Start />} />
 			</Routes>

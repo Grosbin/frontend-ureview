@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Card } from "primereact/card";
 import { Button } from "primereact/button";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,7 +15,8 @@ import { motion } from "framer-motion";
 import { variantsCard, variantsButton } from "../../helpers/framerValues";
 import { useNavigate } from "react-router-dom";
 import { startDataActivity } from "../../actions/activity";
-import { confirmDialog } from "primereact/confirmdialog";
+import { confirmPopup } from "primereact/confirmpopup";
+import { Toast } from "primereact/toast";
 // import { Tooltip } from 'primereact/tooltip';
 
 // import { deleteCourse, startEditCourse } from '../../actions/course';
@@ -40,6 +41,8 @@ export const ListEvent = ({
   const [star, setStar] = useState(null);
   const [quotas, setQuotas] = useState(null);
 
+  const toast = useRef(null);
+
   // useEffect(() => {
   // 	// setQuotas(events.quotas);
   // 	console.log(events);
@@ -48,10 +51,29 @@ export const ListEvent = ({
     dispatch(startGetEvent());
   }, [dispatch]);
 
-  const handleDetete = (id) => {
-    console.log("Entro al delete " + id);
+  const handleDetete = (index) => {
+    console.log("Entro al delete " + index.id);
+    toast.current.show({
+      severity: "success",
+      summary: "Borrado",
+      detail: `${index.name} eliminado exitosamente`,
+      life: 4000,
+    });
     // dispatch(deleteEvent(id));
-    dispatch(startDeleteEvent(id));
+    dispatch(startDeleteEvent(index.id));
+  };
+
+  const confirmDelete = (e, index) => {
+    confirmPopup({
+      target: e.currentTarget,
+      message: `Desea borrar ${index.name}?`,
+      icon: "pi pi-exclamation-triangle text-yellow-500",
+      acceptClassName: "p-button-danger",
+      acceptLabel: "Aceptar",
+      rejectClassName: "p-button-primary p-button-text",
+      accept: () => handleDetete(index),
+      // reject: () => reject(index)
+    });
   };
 
   const handleUpdate = (id) => {
@@ -84,19 +106,6 @@ export const ListEvent = ({
   const handleStatistics = () => {
     console.log("Entro a estadisticas");
     navigate("/estadisticas");
-  };
-  const confirm = () => {
-    confirmDialog({
-      message: "Are you sure you want to proceed?",
-      header: "Confirmation",
-      icon: "pi pi-exclamation-triangle",
-      accept: () => {
-        console.log("accept");
-      },
-      reject: () => {
-        console.log("reject");
-      },
-    });
   };
 
   const handleAttendance = (activity) => {
@@ -186,7 +195,7 @@ export const ListEvent = ({
     </div>
   );
 
-  const editEventButton = (id, displayMaximizable) => (
+  const editEventButton = (index, displayMaximizable) => (
     <span>
       <MotionButton
         whileHover="hover"
@@ -197,7 +206,7 @@ export const ListEvent = ({
         className="p-button-warning"
         disabled={displayMaximizable}
         style={{ marginLeft: "1.3rem" }}
-        onClick={() => handleUpdate(id)}
+        onClick={() => handleUpdate(index.id)}
       />
       <MotionButton
         whileHover="hover"
@@ -208,13 +217,13 @@ export const ListEvent = ({
         icon="pi pi-trash"
         className="p-button-danger"
         style={{ marginLeft: "1rem" }}
-        onClick={() => handleDetete(id)}
+        onClick={(e) => confirmDelete(e, index)}
       />
     </span>
   );
 
-  const footer = (id, displayMaximizable) => (
-    <>{editEventButton(id, displayMaximizable)}</>
+  const footer = (index, displayMaximizable) => (
+    <>{editEventButton(index, displayMaximizable)}</>
   );
 
   const dateOptions = { year: "numeric", month: "long", day: "numeric" };
@@ -222,6 +231,7 @@ export const ListEvent = ({
   return (
     // <div className='main'>
     <div className="container">
+      <Toast ref={toast} />
       {
         //TODO: cambiar el h4 por un parrafo
         events
@@ -239,7 +249,7 @@ export const ListEvent = ({
                 >
                   <Card
                     title={index.name}
-                    footer={footer(index.id, displayMaximizable)}
+                    footer={footer(index, displayMaximizable)}
                     header={header(index)}
                     className="justify-content-center align-content-center"
                   >
