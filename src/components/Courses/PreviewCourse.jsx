@@ -11,7 +11,11 @@ import {
 import { motion } from "framer-motion";
 import { variantsCard, variantsButton } from "../../helpers/framerValues";
 import { assets } from "../../helpers/assets";
-import { startAddNewActivity, startDataActivity } from "../../actions/activity";
+import {
+  startAddNewActivity,
+  startDataActivity,
+  startGetActivity,
+} from "../../actions/activity";
 
 import { ConfirmDialog } from "primereact/confirmdialog"; // To use <ConfirmDialog> tag
 import { confirmDialog } from "primereact/confirmdialog"; // To use confirmDialog method
@@ -40,6 +44,7 @@ export const PreviewCourse = ({
 
   useEffect(() => {
     dispatch(startGetCourse());
+    dispatch(startGetActivity());
   }, [dispatch]);
 
   const handleTakeCourse = (index) => {
@@ -65,7 +70,7 @@ export const PreviewCourse = ({
   const confirm = (e, index) => {
     // console.log(index);
     // console.log(e);
-    const idActive = activities.find((item) => item.id === index.id);
+    const idActive = activities.find((item) => item.id_activity === index.id);
 
     if (!idActive) {
       confirmPopup({

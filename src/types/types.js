@@ -33,6 +33,7 @@ export const types = {
 	//Actividad
 	addActivity: 'Add Activity',
 	dataActivity: 'Data Activity',
+	getActivity: 'Get Activity',
 
 	//Comentario
 	addComment: 'Add Comment',

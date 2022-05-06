@@ -17,6 +17,11 @@ export const activityReducer = (state = initialState, action) => {
 				...state,
 				active: action.payload
 			}
+		case types.getActivity:
+			return {
+				...state,
+				activities: [...action.payload]
+			}
 		default:
 			return state;
 	}

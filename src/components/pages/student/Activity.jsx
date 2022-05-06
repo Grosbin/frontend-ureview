@@ -6,34 +6,43 @@ import { Button } from "primereact/button";
 import { assets } from "../../../helpers/assets";
 
 import { ScrollPanel } from "primereact/scrollpanel";
-import { startDataActivity } from "../../../actions/activity";
+import { startDataActivity, startGetActivity } from "../../../actions/activity";
 import { useNavigate } from "react-router-dom";
 import { ActivityCard } from "../../Activity/ActivityCard";
+import { filterData } from "../../../helpers/filterData";
+import { startGetEvent } from "../../../actions/event";
+import { startGetCourse } from "../../../actions/course";
 
 export const Activity = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const { events } = useSelector((state) => state.events);
+  const { course } = useSelector((state) => state.course);
   const { activities } = useSelector((state) => state.activities);
   const { hourVoae, comments } = useSelector((state) => state.statistics);
   const { uid } = useSelector((state) => state.auth);
 
-  const course =
-    activities.filter(
-      (activity) =>
-        activity.type === "course" && activity.userActivity._id === uid
-    ) || [];
-  const events =
-    activities.filter(
-      (activity) =>
-        activity.type === "events" && activity.userActivity._id === uid
-    ) || [];
-  console.log(course);
-  console.log(events);
+  // const courseData =
+  //   activities.filter(
+  //     (activity) => activity.type === "course" && activity.user._id === uid
+  //   ) || [];
+  // const eventsData =
+  //   activities.filter(
+  //     (activity) => activity.type === "events" && activity.user._id === uid
+  //   ) || [];
+
+  const eventsData = filterData(events, activities, uid);
+  const courseData = filterData(course, activities, uid);
+
+  console.log(courseData);
+  console.log(eventsData);
 
   useEffect(() => {
-    console.log("Acitivdades");
-  }, []);
+    dispatch(startGetActivity());
+    dispatch(startGetEvent());
+    dispatch(startGetCourse());
+  }, [dispatch]);
 
   const handleActivity = (activity) => {
     dispatch(startDataActivity(activity, false));
@@ -56,11 +65,18 @@ export const Activity = () => {
                 <img
                   className="p-carousel-img"
                   alt="Card"
+                  // src={assets(
+                  //   `${
+                  //     activity.type === "course"
+                  //       ? "./banner-01.png"
+                  //       : `./${activity.ambit?.ambit}.png`
+                  //   }`
+                  // )}
                   src={assets(
                     `${
-                      activity.type === "course"
-                        ? "./banner-01.png"
-                        : `./${activity.ambit?.ambit}.png`
+                      activity.ambit?.ambit
+                        ? `./${activity.ambit.ambit}.png`
+                        : `./banner-01.png`
                     }`
                   )}
                 />
@@ -130,13 +146,13 @@ export const Activity = () => {
       <div className="grid">
         <ActivityCard
           title={"Cursos"}
-          count={course.length}
+          count={courseData.length}
           icon={"pi-book text-blue-500"}
         />
 
         <ActivityCard
           title={"Eventos"}
-          count={events.length}
+          count={eventsData.length}
           icon={"pi-bookmark text-orange-500"}
         />
 
@@ -162,7 +178,7 @@ export const Activity = () => {
                 style={{ maxWidth: "100%" }}
               >
                 <Carousel
-                  value={events}
+                  value={eventsData}
                   numVisible={1}
                   numScroll={1}
                   orientation="vertical"
@@ -185,7 +201,7 @@ export const Activity = () => {
                 style={{ maxWidth: "100%" }}
               >
                 <Carousel
-                  value={course}
+                  value={courseData}
                   numVisible={1}
                   numScroll={1}
                   orientation="vertical"

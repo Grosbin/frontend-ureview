@@ -12,18 +12,16 @@ import { motion } from "framer-motion";
 import { variantsCard, variantsButton } from "../../helpers/framerValues";
 import { assets } from "../../helpers/assets";
 import { startGetEvent } from "../../actions/event";
-import { startAddNewActivity, startDataActivity } from "../../actions/activity";
+import {
+  startAddNewActivity,
+  startDataActivity,
+  startGetActivity,
+} from "../../actions/activity";
 import { ConfirmPopup, confirmPopup } from "primereact/confirmpopup";
 import { Toast } from "primereact/toast";
 import { useNavigate } from "react-router-dom";
 
-export const PreviewEvent = ({
-  setDisplayMaximizable,
-  setEditContent,
-  setAddContent,
-  setDataContent,
-  displayMaximizable,
-}) => {
+export const PreviewEvent = () => {
   const MotionButton = motion(Button);
 
   const dispatch = useDispatch();
@@ -38,6 +36,7 @@ export const PreviewEvent = ({
 
   useEffect(() => {
     dispatch(startGetEvent());
+    dispatch(startGetActivity());
   }, [dispatch]);
 
   const handleTakeEvents = (index) => {
@@ -56,7 +55,7 @@ export const PreviewEvent = ({
     // console.log(e);
     // console.log(activities.includes(index.id));
 
-    const idActive = activities.find((item) => item.id === index.id);
+    const idActive = activities.find((item) => item.id_activity === index.id);
 
     if (!idActive) {
       confirmPopup({
