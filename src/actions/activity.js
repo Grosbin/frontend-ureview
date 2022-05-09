@@ -59,10 +59,10 @@ const dataActivity = (activity, enroll) => {
 
 
 
-export const startGetActivity = () => {
+export const startGetActivity = (id) => {
 	return async (dispatch) => {
 		try {
-			const resp = await fetchConToken('actividad');
+			const resp = await fetchConToken(`actividad/${id}`);
 			const body = await resp.json();
 			const activity = body.activity;
 

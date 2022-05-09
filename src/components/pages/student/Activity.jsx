@@ -40,7 +40,7 @@ export const Activity = () => {
 
   useEffect(() => {
     dispatch(startGetActivity());
-    dispatch(startGetEvent());
+    dispatch(startGetEvent(uid));
     dispatch(startGetCourse());
   }, [dispatch]);
 
