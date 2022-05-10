@@ -1,26 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { Fieldset } from "primereact/fieldset";
-
 import { Knob } from "primereact/knob";
-
 import { Button } from "primereact/button";
-
-import { ScrollTop } from "primereact/scrolltop";
-import { ScrollPanel } from "primereact/scrollpanel";
-
 import { InputTextarea } from "primereact/inputtextarea";
-import { CommentItems } from "../ui/CommentItems";
-import { assets } from "../../helpers/assets";
-
 import { Calendar } from "primereact/calendar";
 import { addLocale } from "primereact/api";
-import { useDispatch, useSelector } from "react-redux";
 
 import moment from "moment";
-import { startAddNewComment } from "../../actions/comment";
+
+import { CommentItems } from "../ui/CommentItems";
+import { startAddNewComment, startGetComments } from "../../actions/comment";
 import { startAddNewActivity, startDataActivity } from "../../actions/activity";
-import { useNavigate } from "react-router-dom";
 import { sumCommentsAction } from "../../actions/statistics";
 
 export const EventActivity = () => {
@@ -39,6 +32,10 @@ export const EventActivity = () => {
   const [countKey, setCountKey] = useState(1);
   console.log(eventActive.url);
   // const [value3, setValue3] = useState(12);
+
+  useEffect(() => {
+    dispatch(startGetComments(eventActive.id));
+  }, [dispatch]);
 
   const handleComment = () => {
     setCountKey(countKey + 1);
@@ -223,6 +220,17 @@ export const EventActivity = () => {
         </div>
 
         <div className="col-12">
+          {comments.map((index) => (
+            <CommentItems
+              key={index.id}
+              user={index.user.name}
+              comment={index.comment}
+              date={index.date}
+            />
+          ))}
+        </div>
+
+        <div className="col-12">
           <div>
             <div className="flex justify-content-between mb-3">
               <div
@@ -249,46 +257,6 @@ export const EventActivity = () => {
               </div>
             </div>
           </div>
-        </div>
-        {/* <div className="col-12">
-					<div className="surface-0 shadow-2 p-3 border-50 border-round" style={{ height: '600px' }}>
-						<div className="flex justify-content-between mb-3">
-							<div >
-								<span className="block text-900 font-bold mb-3">Comentarios</span>
-
-								<div className="comments-container">
-									<ul id="comments-list" className="comments-list">
-
-										<CommentItems />
-										<CommentItems />
-										<CommentItems />
-										<CommentItems />
-										<CommentItems />
-										<CommentItems />
-										<CommentItems />
-
-										<ScrollTop target="parent" threshold={100} className="custom-scrolltop" icon="pi pi-arrow-up" />
-
-									</ul>
-								</div>
-							
-							</div>
-						</div>
-
-					</div>
-				</div> */}
-        <div className="col-12">
-          {comments.map(
-            (index) =>
-              index.activity?.id === active.activity.id && (
-                <CommentItems
-                  key={index.id}
-                  user={index.user.name}
-                  comment={index.comment}
-                  date={index.date}
-                />
-              )
-          )}
         </div>
       </div>
     </div>

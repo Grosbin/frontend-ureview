@@ -49,6 +49,7 @@ export const ListCourse = ({
   const confirmDelete = (e, index) => {
     // console.log(index);
     // console.log(e);
+    // console.log("Entro al confirm");
     confirmPopup({
       target: e.currentTarget,
       message: `Desea borrar ${index.name}?`,

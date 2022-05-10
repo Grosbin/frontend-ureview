@@ -31,13 +31,16 @@ export const PreviewEvent = () => {
   const { isStudent } = useSelector((state) => state.auth);
   const { activities } = useSelector((state) => state.activities);
 
+  const [confirmDialog, setConfirmDialog] = useState(false);
+
   // console.log(course);
   const toast = useRef(null);
 
   useEffect(() => {
     dispatch(startGetEvent());
     dispatch(startGetActivity());
-  }, [dispatch]);
+    setConfirmDialog(false);
+  }, [dispatch, confirmDialog]);
 
   const handleTakeEvents = (index) => {
     console.log("Se creo la actividad", index.name);
@@ -48,13 +51,15 @@ export const PreviewEvent = () => {
       life: 1000,
     });
     dispatch(startAddNewActivity(index, "events"));
+    setConfirmDialog(true);
+    // dispatch(startGetActivity());
   };
 
   const confirm = (e, index) => {
     // console.log(index);
     // console.log(e);
     // console.log(activities.includes(index.id));
-
+    dispatch(startGetActivity());
     const idActive = activities.find((item) => item.id_activity === index.id);
 
     if (!idActive) {

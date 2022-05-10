@@ -12,6 +12,8 @@ import { ActivityCard } from "../../Activity/ActivityCard";
 import { filterData } from "../../../helpers/filterData";
 import { startGetEvent } from "../../../actions/event";
 import { startGetCourse } from "../../../actions/course";
+import { motion } from "framer-motion";
+import { variantsCardActivity } from "../../../helpers/framerValues";
 
 export const Activity = () => {
   const dispatch = useDispatch();
@@ -47,10 +49,9 @@ export const Activity = () => {
   const handleActivity = (activity) => {
     dispatch(startDataActivity(activity, false));
     console.log(activity.name);
-    if (activity.type === "events") {
+    if (activity.ambit?.ambit) {
       navigate("evento-informacion");
-    }
-    if (activity.type === "course") {
+    } else {
       navigate("curso-informacion");
     }
   };
@@ -59,7 +60,12 @@ export const Activity = () => {
     return (
       <div className="activity-item grid">
         <div className="flex flex-wrap card-container">
-          <div className="flex align-items-center justify-content-center bg-blue-100 font-bold text-white m-2 border-round">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={variantsCardActivity}
+            className="flex align-items-center justify-content-center bg-blue-100 font-bold text-white m-2 border-round"
+          >
             <div className="header__card mb-3">
               <div className="header__card">
                 <img
@@ -100,7 +106,7 @@ export const Activity = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
           <div className="flex align-items-center justify-content-center">
             <div className="scrollpanel-demo">
               <div className="card ">

@@ -23,21 +23,17 @@ import { ConfirmPopup, confirmPopup } from "primereact/confirmpopup";
 import { Toast } from "primereact/toast";
 import { useNavigate } from "react-router-dom";
 
-export const PreviewCourse = ({
-  setDisplayMaximizable,
-  setEditContent,
-  setAddContent,
-  setDataContent,
-  displayMaximizable,
-}) => {
+export const PreviewCourse = () => {
   const MotionButton = motion(Button);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { course } = useSelector((state) => state.course);
-  const { isStudent, uid } = useSelector((state) => state.auth);
+  const { isStudent } = useSelector((state) => state.auth);
   const { activities } = useSelector((state) => state.activities);
+
+  const [confirmDialog, setConfirmDialog] = useState(false);
 
   const toast = useRef(null);
   // console.log(course);
@@ -45,7 +41,8 @@ export const PreviewCourse = ({
   useEffect(() => {
     dispatch(startGetCourse());
     dispatch(startGetActivity());
-  }, [dispatch]);
+    setConfirmDialog(false);
+  }, [dispatch, confirmDialog]);
 
   const handleTakeCourse = (index) => {
     console.log("Se creo la actividad", index.name);
@@ -55,7 +52,9 @@ export const PreviewCourse = ({
       detail: `${index.name} matriculado exitosamente`,
       life: 1000,
     });
+    // dispatch(startGetActivity());
     dispatch(startAddNewActivity(index, "course"));
+    setConfirmDialog(true);
   };
 
   // const accept = (index) => {
@@ -70,6 +69,7 @@ export const PreviewCourse = ({
   const confirm = (e, index) => {
     // console.log(index);
     // console.log(e);
+    // dispatch(startGetActivity());
     const idActive = activities.find((item) => item.id_activity === index.id);
 
     if (!idActive) {

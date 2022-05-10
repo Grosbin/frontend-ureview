@@ -37,6 +37,7 @@ export const types = {
 
 	//Comentario
 	addComment: 'Add Comment',
+	getComments: 'Get Comment',
 
 	//Estadisticas
 	sumComments: 'Sum Comments',
